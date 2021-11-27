@@ -8,6 +8,7 @@ import com.sky.utils.SecurityUtils;
 import com.sky.vo.DataGridView;
 import com.sky.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("dict/type")
+@PreAuthorize("hasAuthority('system_dict')")
 public class SysDictTypeController {
 
     @Autowired
@@ -28,14 +30,14 @@ public class SysDictTypeController {
 
     // 分页查询字典类型
     @GetMapping("/listForPage")
-    public R listForPage(DictTypeDTO dictTypeDto) {
+    public R listForPage(@RequestBody DictTypeDTO dictTypeDto) {
         DataGridView dataGridView = dictTypeService.listPage(dictTypeDto);
         return R.success("查询成功", dataGridView.getData(), dataGridView.getTotal());
     }
 
     // 新增字典类型
     @PostMapping("/addDictType")
-    public R addDictType(@Validated DictTypeDTO dictTypeDto) {
+    public R addDictType(@RequestBody @Validated DictTypeDTO dictTypeDto) {
         if (dictTypeService.checkDictTypeUnique(dictTypeDto.getDictId(), dictTypeDto.getDictType())) {
             return R.fail("新增字典【" + dictTypeDto.getDictName() + "】失败，字典类型已存在");
         }
@@ -55,7 +57,7 @@ public class SysDictTypeController {
 
     // 更新字典类型数据
     @PutMapping("/updateDictType")
-    public R updateDictType(@Validated DictTypeDTO dictTypeDto) {
+    public R updateDictType(@RequestBody @Validated DictTypeDTO dictTypeDto) {
         if (dictTypeService.checkDictTypeUnique(dictTypeDto.getDictId(), dictTypeDto.getDictType())) {
             return R.fail("修改字典【" + dictTypeDto.getDictName() + "】失败，字典类型已存在");
         }

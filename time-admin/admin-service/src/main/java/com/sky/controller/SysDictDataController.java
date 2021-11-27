@@ -8,6 +8,7 @@ import com.sky.utils.SecurityUtils;
 import com.sky.vo.DataGridView;
 import com.sky.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/dict/data")
+@PreAuthorize("hasAuthority('system_dict')")
 public class SysDictDataController {
     @Autowired
     private SysDictDataService dictDataService;
