@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: admin-service
+  profiles: # 切换到开发环境上
+    active: dev
+  cloud:
+    nacos:
+      server-addr: time-server:8848
+      config: # 配置文件的扩展名
+        file-extension: yaml
