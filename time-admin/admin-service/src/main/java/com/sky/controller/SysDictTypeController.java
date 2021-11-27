@@ -7,7 +7,6 @@ import com.sky.service.SysDictTypeService;
 import com.sky.utils.SecurityUtils;
 import com.sky.vo.DataGridView;
 import com.sky.vo.R;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +15,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
+ * 字典类型控制器
  * @author sky
  * @create 2021-11-27 15:22
  */
-@RestController()
-@Api(tags = "字典类型控制器")
-@RequestMapping("dictType")
+@RestController
+@RequestMapping("dict/type")
 public class SysDictTypeController {
 
     @Autowired

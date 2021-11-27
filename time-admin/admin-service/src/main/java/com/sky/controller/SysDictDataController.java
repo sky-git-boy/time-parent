@@ -16,11 +16,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
+ * 字典数据控制器
  * @author sky
  * @create 2021-11-27 16:14
  */
 @RestController
-@RequestMapping("/dictData")
+@RequestMapping("/dict/data")
 public class SysDictDataController {
     @Autowired
     private SysDictDataService dictDataService;
