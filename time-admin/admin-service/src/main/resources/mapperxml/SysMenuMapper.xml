@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.SysMenu">
+    <!--@mbg.generated-->
+    <!--@Table sys_menu-->
+    <id column="menu_id" jdbcType="BIGINT" property="menuId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="parent_ids" jdbcType="VARCHAR" property="parentIds" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_type" jdbcType="CHAR" property="menuType" />
+    <result column="percode" jdbcType="VARCHAR" property="percode" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    menu_id, parent_id, parent_ids, menu_name, menu_type, percode, `path`, remark, `status`,
+    create_by, create_time, update_by, update_time, del_flag
+  </sql>
+  <select id="selectMenusByUserId" resultMap="BaseResultMap">
+    SELECT DISTINCT
+        s1.*
+    FROM
+        sys_menu s1
+        INNER JOIN sys_role_menu s2
+        INNER JOIN sys_user_role s3 ON ( s1.menu_id = s2.menu_id AND s2.role_id = s3.role_id )
+    WHERE
+        s3.user_id = #{userId}
+        AND s1.menu_type IN
+        <foreach collection="menuTypes" item="type" index="index" open="(" separator="," close=")">
+            #{type}
+        </foreach>
+  </select>
+</mapper>

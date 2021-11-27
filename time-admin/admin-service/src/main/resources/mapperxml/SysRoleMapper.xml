@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.SysRole">
+    <!--@mbg.generated-->
+    <!--@Table sys_role-->
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="role_sort" jdbcType="INTEGER" property="roleSort" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_id, role_name, role_code, role_sort, remark, `status`, create_by, create_time, 
+    update_by, update_time, del_flag
+  </sql>
+  <select id="getUserRoleCode" resultType="java.lang.String">
+    SELECT
+        r.`role_code`
+    FROM
+        sys_role AS r LEFT JOIN sys_user_role as ur on r.role_id = ur.role_id
+    WHERE
+      ur.user_id = #{userId}
+  </select>
+</mapper>
