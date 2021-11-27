@@ -1,0 +1,15 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: authorization-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: time-server:8848
+  datasource:
+    url: jdbc:mysql://time-server:3307/time-manage?useSSL=false&serverTimezon=GMT%28
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: sky378797
