@@ -1,0 +1,27 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: time-server:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启动 gateway 发现服务
+          lower-case-service-id: true # admin-service ADMIN-SERVICE  /admin-service/** -> 微服务（ADMIN-SERVICE）
+      routes: # 自定义路由机制
+        - id: admin-service_router
+          uri: lb://admin-service   # 转发到那个目的地
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1 # 当前端访问 /admin/login -> login 将 admin 自动的去掉
+
+  redis:
+    host: time-server
+    port: 6380
+    password: sky378797
