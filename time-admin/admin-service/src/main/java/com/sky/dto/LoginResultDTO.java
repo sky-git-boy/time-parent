@@ -1,6 +1,7 @@
 package com.sky.dto;
 
 import com.sky.domain.SysMenu;
+import com.sky.vo.MenuTreeVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,7 +28,7 @@ public class LoginResultDTO {
     /**
      * 前端的菜单数据
      */
-    private List<SysMenu> menus;
+    private List<MenuTreeVo> menus;
     /**
      * 权限数据
      */

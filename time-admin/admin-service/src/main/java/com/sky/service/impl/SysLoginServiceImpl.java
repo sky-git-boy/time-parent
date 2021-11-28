@@ -13,6 +13,7 @@ import com.sky.feign.JwtToken;
 import com.sky.feign.OAuth2FeignClient;
 import com.sky.service.SysLoginService;
 import com.sky.service.SysMenuService;
+import com.sky.vo.MenuTreeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -85,6 +86,10 @@ public class SysLoginServiceImpl implements SysLoginService {
         menuTypes.add(Constants.MENU_TYPE_M);
         menuTypes.add(Constants.MENU_TYPE_C);
         List<SysMenu> menus = sysMenuService.getMenusByUserId(userId, menuTypes);
+        List<MenuTreeVo> menuVos = new ArrayList<>();
+        for (SysMenu menu : menus) {
+            menuVos.add(new MenuTreeVo(menu.getMenuId().toString(), menu.getPath()));
+        }
 
         // 从token中获取我们的权限数据
         JSONArray authoritiesJsonArray = jwtJson.getJSONArray("authorities");
@@ -97,6 +102,6 @@ public class SysLoginServiceImpl implements SysLoginService {
         redisTemplate.opsForValue().set(token, "", jwtToken.getExpiresIn(), TimeUnit.SECONDS);
 
         // 我们返回给前端的Token 数据，少一个bearer：
-        return new LoginResultDTO(jwtToken.getTokenType() + " " + token, menus, authorities);
+        return new LoginResultDTO(jwtToken.getTokenType() + " " + token, menuVos, authorities);
     }
 }
