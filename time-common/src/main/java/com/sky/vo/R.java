@@ -75,7 +75,7 @@ public class R extends HashMap<String, Object> {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
         super.put(DATA_TAG, data);
-        super.put(DATA_TOTAL, total);
+        super.put(DATA_TOTAL, Math.toIntExact(total));
     }
 
     /**
@@ -125,7 +125,7 @@ public class R extends HashMap<String, Object> {
      * @return 成功消息
      */
     public static R success(String msg, Object data, Long total) {
-        return new R(HttpStatus.SUCCESS, msg, data,total);
+        return new R(HttpStatus.SUCCESS, msg, data, total);
     }
 
     /**
