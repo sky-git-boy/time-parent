@@ -37,7 +37,7 @@ public class SysDictDataController {
 
     // 新增字典数据
     @PostMapping("/addDictData")
-    public R addDictData(@Validated DictDataDTO dictDataDto) {
+    public R addDictData(@RequestBody @Validated DictDataDTO dictDataDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
             throw new BusinessException("获取用户信息失败");
@@ -48,7 +48,7 @@ public class SysDictDataController {
 
     // 修改字典数据
     @PutMapping("/updateDictData")
-    public R updateDictData(@Validated DictDataDTO dictDataDto) {
+    public R updateDictData(@RequestBody @Validated DictDataDTO dictDataDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
             throw new BusinessException("获取用户信息失败");

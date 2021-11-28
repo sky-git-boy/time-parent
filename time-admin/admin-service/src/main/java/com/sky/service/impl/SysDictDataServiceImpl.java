@@ -42,6 +42,7 @@ public class SysDictDataServiceImpl implements SysDictDataService {
         qw.eq(StringUtils.isNotBlank(dictDataDto.getDictType()), SysDictData.COL_DICT_TYPE, dictDataDto.getDictType());
         qw.like(StringUtils.isNotBlank(dictDataDto.getDictLabel()), SysDictData.COL_DICT_LABEL, dictDataDto.getDictLabel());
         qw.eq(StringUtils.isNotBlank(dictDataDto.getStatus()), SysDictData.COL_STATUS, dictDataDto.getStatus());
+        qw.orderByAsc(SysDictData.COL_DICT_SORT);
         this.dictDataMapper.selectPage(page, qw);
         return new DataGridView(page.getTotal(), page.getRecords());
     }
@@ -84,9 +85,14 @@ public class SysDictDataServiceImpl implements SysDictDataService {
     @Override
     public List<SysDictData> selectDictDataByDictType(String dictType) {
         // 从 redis 中查询
-        String key = Constants.DICT_REDIS_PROFIX + dictType;
-        ValueOperations<String, String> ops = redisTemplate.opsForValue();
-        String json = ops.get(key);
-        return JSON.parseArray(json, SysDictData.class);
+//        String key = Constants.DICT_REDIS_PROFIX + dictType;
+//        ValueOperations<String, String> ops = redisTemplate.opsForValue();
+//        String json = ops.get(key);
+//        return JSON.parseArray(json, SysDictData.class);
+
+        QueryWrapper<SysDictData> qw = new QueryWrapper<>();
+        qw.eq(SysDictData.COL_DICT_TYPE, dictType);
+        qw.eq(SysDictData.COL_STATUS, Constants.STATUS_TRUE); // 可用的
+        return this.dictDataMapper.selectList(qw);
     }
 }

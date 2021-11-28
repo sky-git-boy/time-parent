@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 字典类型控制器
+ *
  * @author sky
  * @create 2021-11-27 15:22
  */
@@ -30,7 +31,7 @@ public class SysDictTypeController {
 
     // 分页查询字典类型
     @GetMapping("/listForPage")
-    public R listForPage(@RequestBody DictTypeDTO dictTypeDto) {
+    public R listForPage(DictTypeDTO dictTypeDto) {
         DataGridView dataGridView = dictTypeService.listPage(dictTypeDto);
         return R.success("查询成功", dataGridView.getData(), dataGridView.getTotal());
     }
