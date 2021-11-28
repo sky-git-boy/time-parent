@@ -12,4 +12,7 @@ import java.util.List;
 public interface SysRoleMapper extends BaseMapper<SysRole> {
     // 查询用户的角色代码
     List<String> getUserRoleCode(Long userId);
+
+    //根据用户 IDS 删除 sys_role_user 里面的数据
+    int deleteRoleUserByUserIds(List<Long> ids);
 }

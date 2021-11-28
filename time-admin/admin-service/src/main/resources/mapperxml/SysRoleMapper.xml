@@ -29,4 +29,5 @@
     WHERE
       ur.user_id = #{userId}
   </select>
+  <delete id="deleteRoleUserByUserIds"></delete>
 </mapper>
