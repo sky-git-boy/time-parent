@@ -23,13 +23,13 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/dict/data")
-@PreAuthorize("hasAuthority('system_dict')")
 public class SysDictDataController {
     @Autowired
     private SysDictDataService dictDataService;
 
     // 分页查询
     @GetMapping("/listForPage")
+    @PreAuthorize("hasAuthority('system_dict')")
     public R listForPage(DictDataDTO dictDataDto) {
         DataGridView dataGridView = dictDataService.listPage(dictDataDto);
         return R.success("查询成功", dataGridView.getData(), dataGridView.getTotal());
@@ -37,6 +37,7 @@ public class SysDictDataController {
 
     // 新增字典数据
     @PostMapping("/addDictData")
+    @PreAuthorize("hasAuthority('system_dict')")
     public R addDictData(@RequestBody @Validated DictDataDTO dictDataDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -48,6 +49,7 @@ public class SysDictDataController {
 
     // 修改字典数据
     @PutMapping("/updateDictData")
+    @PreAuthorize("hasAuthority('system_dict')")
     public R updateDictData(@RequestBody @Validated DictDataDTO dictDataDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -59,6 +61,7 @@ public class SysDictDataController {
 
     // 批量删除字典数据
     @DeleteMapping("/deleteDictDataByIds/{dictCodeIds}")
+    @PreAuthorize("hasAuthority('system_dict')")
     public R deleteDictDataByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] dictCodeIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -69,6 +72,7 @@ public class SysDictDataController {
 
     // 根据字典数据ID查询字典数据
     @GetMapping("/getOne/{dictCode}")
+    @PreAuthorize("hasAuthority('system_dict')")
     public R getOne(@PathVariable @Validated @NotNull(message = "要查找的ID不能为空") Long dictCode) {
         return R.success(this.dictDataService.selectDictDataById(dictCode));
     }
