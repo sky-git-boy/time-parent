@@ -75,6 +75,8 @@ public interface Constants {
      * 令牌
      */
     String TOKEN = "token";
+    String MENUS = "menus";
+    String AUTHORITIES = "authorities";
 
 
     /************************************* REDIS KEY ************************************/
