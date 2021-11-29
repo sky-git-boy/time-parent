@@ -73,7 +73,7 @@ public class SysRole extends BaseEntity {
      */
     @TableField(value = "create_by")
     @ApiModelProperty(value = "创建者")
-    private String createBy;
+    private Long createBy;
 
     /**
      * 创建时间
@@ -87,7 +87,7 @@ public class SysRole extends BaseEntity {
      */
     @TableField(value = "update_by")
     @ApiModelProperty(value = "更新者")
-    private String updateBy;
+    private Long updateBy;
 
     /**
      * 更新时间
