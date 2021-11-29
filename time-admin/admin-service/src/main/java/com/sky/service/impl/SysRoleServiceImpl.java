@@ -42,9 +42,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     public DataGridView listUserForPage(RoleDTO roleDto) {
         Page<SysRole> page = new Page<>(roleDto.getPageNum(), roleDto.getPageSize());
         QueryWrapper<SysRole> qw = new QueryWrapper<>();
-        qw.like(StringUtils.isEmpty(roleDto.getRoleName()), SysRole.COL_ROLE_NAME, roleDto.getRoleName());
-        qw.like(StringUtils.isEmpty(roleDto.getRoleCode()), SysRole.COL_ROLE_CODE, roleDto.getRoleCode());
-        qw.eq(StringUtils.isEmpty(roleDto.getStatus()), SysRole.COL_STATUS, roleDto.getStatus());
+        qw.like(!StringUtils.isEmpty(roleDto.getRoleName()), SysRole.COL_ROLE_NAME, roleDto.getRoleName());
+        qw.like(!StringUtils.isEmpty(roleDto.getRoleCode()), SysRole.COL_ROLE_CODE, roleDto.getRoleCode());
+        qw.eq(!StringUtils.isEmpty(roleDto.getStatus()), SysRole.COL_STATUS, roleDto.getStatus());
         qw.ge(roleDto.getBeginTime() != null, SysRole.COL_CREATE_TIME, roleDto.getBeginTime());
         qw.le(roleDto.getEndTime() != null, SysRole.COL_CREATE_TIME, roleDto.getEndTime());
         qw.eq(SysRole.COL_DEL_FLAG, Constants.DEL_FALSE);
@@ -54,8 +54,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
     @Override
-    public SysRole getOne(Long roleId) {
-        return this.roleMapper.selectById(roleId);
+    public RoleDTO getOne(Long roleId) {
+        RoleDTO dto = new RoleDTO();
+        SysRole role = this.roleMapper.selectById(roleId);
+        BeanUtils.copyProperties(role, dto);
+        return dto;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         BeanUtil.copyProperties(roleDto, role);
         //设置修改人
         role.setUpdateBy(roleDto.getSimpleUser().getUserId());
+        role.setUpdateTime(new Date());
         return this.roleMapper.updateById(role);
     }
 
@@ -87,7 +91,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             this.roleMapper.deleteRoleUserByRoleIds(rids);
             //删除角色
             return this.roleMapper.deleteBatchIds(rids);
-        } else return 0;
+        } else
+            return 0;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class SysRoleController {
     /**
      * 分页查询
      */
-    @GetMapping("listUserForPage")
+    @GetMapping("listRoleForPage")
     public R listUserByPage(RoleDTO roleDto) {
         DataGridView view = this.roleService.listUserForPage(roleDto);
         return R.success("查询成功", view.getData(), view.getTotal());

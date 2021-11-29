@@ -26,7 +26,7 @@ public interface SysRoleService extends IService<SysRole> {
     /**
      * 角色详情
      */
-    SysRole getOne(Long roleId);
+    RoleDTO getOne(Long roleId);
 
     /**
      * 添加角色
