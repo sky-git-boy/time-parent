@@ -16,4 +16,10 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
             @Param("userId") Long userId, // 用户Id
             @Param("menuTypes") List<String> menuTypes    // 菜单类型
     );
+
+    // 根据菜单 ID 查询它的子节点个数
+    Long queryChildCountByMenuId(Long menuId);
+
+    // 根据角色 ID 查询菜单
+    List<Long> queryMenuIdsByRoleId(Long roleId);
 }

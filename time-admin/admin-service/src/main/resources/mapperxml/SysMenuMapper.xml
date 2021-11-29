@@ -38,4 +38,25 @@
             #{type}
         </foreach>
   </select>
+  <select id="queryChildCountByMenuId" resultType="java.lang.Long">
+        select count(1) from sys_menu where parent_id=#{menuId}
+  </select>
+  <select id="queryMenuIdsByRoleId" resultType="java.lang.Long">
+    SELECT
+        main.menu_id
+    FROM
+        sys_role_menu main
+    WHERE
+        main.role_id = #{roleId}
+        and
+        main.menu_id not in
+        (
+            SELECT
+                m.parent_id
+            FROM
+                sys_menu m
+                INNER JOIN sys_role_menu rm ON m.menu_id = rm.menu_id
+                AND rm.role_id = #{roleId}
+        )
+  </select>
 </mapper>
