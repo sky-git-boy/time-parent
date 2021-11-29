@@ -125,5 +125,21 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         return 1;
     }
 
+    @Override
+    @Transactional
+    public int saveRoleMenu(Long roleId, Long[] menuIds, Long userId) {
+        try {
+            // 根据角色ID先删除sys_role_menu里面原来的数据
+            this.roleMapper.deleteRoleMenuByRoleIds(Collections.singletonList(roleId));
+            for (Long menuId : menuIds) {
+                int i = this.roleMapper.saveRoleMenu(roleId, menuId, userId, new Date());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return 1;
+    }
+
 
 }

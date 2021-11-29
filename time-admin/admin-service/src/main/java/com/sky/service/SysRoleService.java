@@ -57,4 +57,9 @@ public interface SysRoleService extends IService<SysRole> {
      * 保存角色和用户之间的关系
      */
     int saveRoleUser(Long userId, Long[] roleIds, Long createBy);
+
+    /**
+     * 保存角色和菜单权限关系
+     */
+    int saveRoleMenu(Long roleId, Long[] menuIds, Long userId);
 }

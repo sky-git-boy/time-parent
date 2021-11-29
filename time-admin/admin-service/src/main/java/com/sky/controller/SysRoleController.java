@@ -120,6 +120,26 @@ public class SysRoleController {
             roleIds = new Long[]{};
         }
 
-        return R.toAjax( this.roleService.saveRoleUser(userId, roleIds, user.getUserId()));
+        return R.toAjax(this.roleService.saveRoleUser(userId, roleIds, user.getUserId()));
+    }
+
+    /**
+     * 保存角色和菜单权限关系
+     */
+    @PostMapping("saveRoleMenu/{roleId}/{menuIds}")
+    public R saveRoleMenu(@PathVariable Long roleId, @PathVariable Long[] menuIds) {
+        SimpleUser user = SecurityUtils.getUser();
+        if (user.getUserId() == null) {
+            throw new BusinessException("获取用户信息失败");
+        }
+
+        /*
+         * 因为我们用的路径参数，前端可能传过来的roleIds是一个空的，但是为空的话无法匹配上面的路径
+         * 所以如果为空，我们让前端传一个-1过来，如果是-1说明当前角色一个权限也没有选择
+         */
+        if (menuIds.length == 1 && menuIds[0].equals(-1L)) {
+            menuIds = new Long[]{};
+        }
+        return R.toAjax(this.roleService.saveRoleMenu(roleId, menuIds, user.getUserId()));
     }
 }
