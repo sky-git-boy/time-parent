@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/operLog")
+@PreAuthorize("hasAuthority('oper-log')")
 public class LogOperInfoController {
     
     @Autowired

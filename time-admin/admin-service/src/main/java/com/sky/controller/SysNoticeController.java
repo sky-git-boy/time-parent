@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/notice")
-@PreAuthorize("hasAuthority('system_notice')")
+@PreAuthorize("hasAuthority('portal_notice')")
 public class SysNoticeController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class SysNoticeController {
     @PostMapping("addNotice")
     public R addNotice(@RequestBody @Validated NoticeDTO noticeDto) {
         SimpleUser user = SecurityUtils.getUser();
-        if (null != user.getUserId()) {
+        if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");
         }
         noticeDto.setSimpleUser(user);
@@ -56,7 +56,7 @@ public class SysNoticeController {
     @PutMapping("updateNotice")
     public R updateNotice(@RequestBody @Validated NoticeDTO noticeDto) {
         SimpleUser user = SecurityUtils.getUser();
-        if (null != user.getUserId()) {
+        if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");
         }
         noticeDto.setSimpleUser(user);
