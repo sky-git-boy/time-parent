@@ -18,4 +18,7 @@ public interface LogSmsInfoService {
 
     // 删除
     int deleteSmsByIds(Long[] ids);
+
+    // 添加
+    int insertSms(LogSmsInfo smsInfo);
 }

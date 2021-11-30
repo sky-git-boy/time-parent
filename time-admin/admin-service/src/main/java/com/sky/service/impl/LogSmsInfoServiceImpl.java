@@ -50,4 +50,9 @@ public class LogSmsInfoServiceImpl implements LogSmsInfoService {
         }
         return 0;
     }
+
+    @Override
+    public int insertSms(LogSmsInfo smsInfo) {
+        return this.smsInfoMapper.insert(smsInfo);
+    }
 }
