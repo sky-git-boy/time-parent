@@ -55,12 +55,14 @@ public class MenuDTO extends BaseDTO {
      * 权限标识
      */
     @ApiModelProperty(value="权限标识")
+    @NotBlank(message = "权限标识不能为空")
     private String percode;
 
     /**
      * 路由地址
      */
     @ApiModelProperty(value="路由地址")
+    @NotBlank(message = "路由地址不能为空")
     private String path;
 
     /**
