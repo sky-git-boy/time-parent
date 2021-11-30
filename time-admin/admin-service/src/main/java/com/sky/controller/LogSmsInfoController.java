@@ -5,6 +5,7 @@ import com.sky.service.LogSmsInfoService;
 import com.sky.vo.DataGridView;
 import com.sky.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,8 @@ import javax.validation.constraints.NotNull;
  * @create 2021-11-30 9:42
  */
 @RestController
-@RequestMapping("/sms")
+@RequestMapping("/smsLog")
+@PreAuthorize("hasAuthority('sms-log')")
 public class LogSmsInfoController {
     @Autowired
     private LogSmsInfoService smsInfoService;
