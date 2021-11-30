@@ -54,7 +54,7 @@ public class SysMenuController {
     @PostMapping("addMenu")
     public R addMenu(@RequestBody @Validated MenuDTO menuDto) {
         SimpleUser user = SecurityUtils.getUser();
-        if (null != user.getUserId()) {
+        if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");
         }
         menuDto.setSimpleUser(user);
@@ -67,7 +67,7 @@ public class SysMenuController {
     @PutMapping("updateMenu")
     public R updateMenu(@RequestBody @Validated MenuDTO menuDto) {
         SimpleUser user = SecurityUtils.getUser();
-        if (null != user.getUserId()) {
+        if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");
         }
         menuDto.setSimpleUser(user);
