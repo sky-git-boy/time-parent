@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.LogSmsInfoMapper">
+    <resultMap id="BaseResultMap" type="com.sky.domain.LogSmsInfo">
+        <!--@mbg.generated-->
+        <!--@Table log_sms_info-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="type" jdbcType="CHAR" property="type"/>
+        <result column="error_info" jdbcType="VARCHAR" property="errorInfo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, mobile, create_time, code, `status`, `type`, error_info
+    </sql>
+</mapper>
