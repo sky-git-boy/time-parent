@@ -14,6 +14,7 @@
         <module>time-iaas</module>
         <module>time-admin</module>
         <module>time-common</module>
+        <module>time-member</module>
     </modules>
 
     <parent>
