@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.TimeSlideMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.TimeSlide">
+    <!--@mbg.generated-->
+    <!--@Table time_slide-->
+    <id column="slide_id" jdbcType="BIGINT" property="slideId" />
+    <result column="slide_sort" jdbcType="INTEGER" property="slideSort" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    slide_id, slide_sort, `status`, pic_url, create_by, create_time, update_by, update_time
+  </sql>
+</mapper>
