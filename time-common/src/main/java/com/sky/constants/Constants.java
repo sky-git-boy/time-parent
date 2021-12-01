@@ -11,6 +11,7 @@ public interface Constants {
     String grantType = "password";
 
     String loginType = "admin_type";
+    String MemberType = "member_type";
 
     /**
      * 超管
