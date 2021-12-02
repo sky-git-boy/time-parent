@@ -1,6 +1,6 @@
 package com.sky.controller;
 
-import com.baomidou.mybatisplus.extension.api.R;
+import com.sky.vo.R;
 import com.sky.model.LoginUser;
 import com.sky.params.LoginParams;
 import com.sky.service.LoginService;
@@ -25,9 +25,9 @@ public class LoginController {
 
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
-    public R<LoginUser> login(@RequestBody @Validated LoginParams params){
+    public R login(@RequestBody @Validated LoginParams params){
         LoginUser loginUser =  loginService.login(params) ;
-        return R.ok(loginUser) ;
+        return R.success(loginUser) ;
     }
 
 }
