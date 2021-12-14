@@ -28,7 +28,7 @@ public @interface Log {
     /**
      * 操作人员
      */
-    OperatorType operatorType() default OperatorType.OTHER;
+    OperatorType operatorType() default OperatorType.ADMIN;
 
     /**
      * 是否保存请求的参数
