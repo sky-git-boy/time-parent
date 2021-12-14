@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.domain.SimpleUser;
 import com.sky.dto.DictTypeDTO;
 import com.sky.exception.BusinessException;
@@ -38,6 +40,7 @@ public class SysDictTypeController {
 
     // 新增字典类型
     @PostMapping("/addDictType")
+    @Log(title = "新增字典类型数据", businessType = BusinessType.INSERT)
     public R addDictType(@RequestBody @Validated DictTypeDTO dictTypeDto) {
         if (dictTypeService.checkDictTypeUnique(dictTypeDto.getDictId(), dictTypeDto.getDictType())) {
             return R.fail("新增字典【" + dictTypeDto.getDictName() + "】失败，字典类型已存在");
@@ -58,6 +61,7 @@ public class SysDictTypeController {
 
     // 更新字典类型数据
     @PutMapping("/updateDictType")
+    @Log(title = "更新字典类型数据", businessType = BusinessType.UPDATE)
     public R updateDictType(@RequestBody @Validated DictTypeDTO dictTypeDto) {
         if (dictTypeService.checkDictTypeUnique(dictTypeDto.getDictId(), dictTypeDto.getDictType())) {
             return R.fail("修改字典【" + dictTypeDto.getDictName() + "】失败，字典类型已存在");
@@ -72,6 +76,7 @@ public class SysDictTypeController {
 
     // 删除字典类型
     @DeleteMapping("/deleteDictTypeByIds/{dictIds}")
+    @Log(title = "删除字典类型数据", businessType = BusinessType.DELETE)
     public R deleteDictTypeByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] dictIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {

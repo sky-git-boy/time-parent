@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.domain.SimpleUser;
 import com.sky.dto.RoleDTO;
 import com.sky.exception.BusinessException;
@@ -51,6 +53,7 @@ public class SysRoleController {
      * 添加
      */
     @PostMapping("addRole")
+    @Log(title = "新增角色", businessType = BusinessType.INSERT)
     public R addRole(@RequestBody @Validated RoleDTO roleDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -64,6 +67,7 @@ public class SysRoleController {
      * 修改
      */
     @PutMapping("updateRole")
+    @Log(title = "修改角色", businessType = BusinessType.UPDATE)
     public R updateRole(@RequestBody @Validated RoleDTO roleDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -77,6 +81,7 @@ public class SysRoleController {
      * 删除
      */
     @DeleteMapping("deleteRoleByIds/{roleIds}")
+    @Log(title = "删除角色", businessType = BusinessType.UPDATE)
     public R deleteRoleByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] roleIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -106,6 +111,7 @@ public class SysRoleController {
      * 保存角色和用户之间的关系
      */
     @PostMapping("saveRoleUser/{userId}/{roleIds}")
+    @Log(title = "保存角色和用户之间的关系", businessType = BusinessType.INSERT)
     public R saveRoleUser(@PathVariable Long userId, @PathVariable Long[] roleIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -127,6 +133,7 @@ public class SysRoleController {
      * 保存角色和菜单权限关系
      */
     @PostMapping("saveRoleMenu/{roleId}/{menuIds}")
+    @Log(title = "保存角色和菜单权限关系", businessType = BusinessType.INSERT)
     public R saveRoleMenu(@PathVariable Long roleId, @PathVariable Long[] menuIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {

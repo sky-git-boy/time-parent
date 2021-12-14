@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.dto.LogSmsInfoDTO;
 import com.sky.service.LogSmsInfoService;
 import com.sky.vo.DataGridView;
@@ -46,6 +48,7 @@ public class LogSmsInfoController {
      * 删除
      */
     @DeleteMapping("deleteSmsByIds/{ids}")
+    @Log(title = "删除消息日志", businessType = BusinessType.DELETE)
     public R deleteSmsByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] ids) {
         return R.toAjax(this.smsInfoService.deleteSmsByIds(ids));
     }

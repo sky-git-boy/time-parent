@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.domain.SimpleUser;
 import com.sky.dto.UserDTO;
 import com.sky.exception.BusinessException;
@@ -7,7 +9,6 @@ import com.sky.service.SysUserService;
 import com.sky.utils.SecurityUtils;
 import com.sky.vo.DataGridView;
 import com.sky.vo.R;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -42,6 +43,7 @@ public class SysUserController {
      * 添加
      */
     @PostMapping("addUser")
+    @Log(title = "添加角色", businessType = BusinessType.INSERT)
     public R addUser(@RequestBody @Validated UserDTO userDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -55,6 +57,7 @@ public class SysUserController {
      * 修改
      */
     @PutMapping("updateUser")
+    @Log(title = "修改角色", businessType = BusinessType.UPDATE)
     public R updateUser(@RequestBody @Validated UserDTO userDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -76,6 +79,7 @@ public class SysUserController {
      * 删除
      */
     @DeleteMapping("deleteUserByIds/{userIds}")
+    @Log(title = "删除角色", businessType = BusinessType.DELETE)
     public R deleteUserByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] userIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -96,6 +100,7 @@ public class SysUserController {
      * 重置密码
      */
     @PutMapping("resetPwd/{userIds}")
+    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
     public R resetPwd(@PathVariable Long[] userIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {

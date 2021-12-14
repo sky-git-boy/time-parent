@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.domain.SimpleUser;
 import com.sky.dto.DictDataDTO;
 import com.sky.exception.BusinessException;
@@ -38,6 +40,7 @@ public class SysDictDataController {
     // 新增字典数据
     @PostMapping("/addDictData")
     @PreAuthorize("hasAuthority('system_dict')")
+    @Log(title = "新增字典数据", businessType = BusinessType.INSERT)
     public R addDictData(@RequestBody @Validated DictDataDTO dictDataDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -50,6 +53,7 @@ public class SysDictDataController {
     // 修改字典数据
     @PutMapping("/updateDictData")
     @PreAuthorize("hasAuthority('system_dict')")
+    @Log(title = "修改字典数据", businessType = BusinessType.UPDATE)
     public R updateDictData(@RequestBody @Validated DictDataDTO dictDataDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {
@@ -62,6 +66,7 @@ public class SysDictDataController {
     // 批量删除字典数据
     @DeleteMapping("/deleteDictDataByIds/{dictCodeIds}")
     @PreAuthorize("hasAuthority('system_dict')")
+    @Log(title = "删除字典数据", businessType = BusinessType.DELETE)
     public R deleteDictDataByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] dictCodeIds) {
         SimpleUser user = SecurityUtils.getUser();
         if (user.getUserId() == null) {

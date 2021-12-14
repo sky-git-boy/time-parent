@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.constants.Constants;
 import com.sky.domain.SimpleUser;
 import com.sky.domain.SysMenu;
@@ -52,6 +54,7 @@ public class SysMenuController {
      * 添加菜单
      */
     @PostMapping("addMenu")
+    @Log(title = "添加菜单", businessType = BusinessType.INSERT)
     public R addMenu(@RequestBody @Validated MenuDTO menuDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {

@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.domain.SimpleUser;
 import com.sky.dto.NoticeDTO;
 import com.sky.exception.BusinessException;
@@ -7,7 +9,6 @@ import com.sky.service.SysNoticeService;
 import com.sky.utils.SecurityUtils;
 import com.sky.vo.DataGridView;
 import com.sky.vo.R;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -41,6 +42,7 @@ public class SysNoticeController {
      * 添加
      */
     @PostMapping("addNotice")
+    @Log(title = "添加公告", businessType = BusinessType.INSERT)
     public R addNotice(@RequestBody @Validated NoticeDTO noticeDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -54,6 +56,7 @@ public class SysNoticeController {
      * 修改
      */
     @PutMapping("updateNotice")
+    @Log(title = "修改公告", businessType = BusinessType.UPDATE)
     public R updateNotice(@RequestBody @Validated NoticeDTO noticeDto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -76,6 +79,7 @@ public class SysNoticeController {
      * 删除
      */
     @DeleteMapping("deleteNoticeByIds/{noticeIds}")
+    @Log(title = "删除公告", businessType = BusinessType.DELETE)
     public R deleteNoticeByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] noticeIds) {
         return R.toAjax(this.noticeService.deleteNoticeByIds(noticeIds));
     }
