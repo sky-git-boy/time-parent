@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Api(tags = "个人目标的控制器")
-@RequestMapping("/journal")
+@RequestMapping("/goal")
 public class GoldController {
 
     @Autowired
