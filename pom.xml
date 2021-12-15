@@ -15,6 +15,7 @@
         <module>time-admin</module>
         <module>time-common</module>
         <module>time-member</module>
+        <module>time-statistic</module>
     </modules>
 
     <parent>
