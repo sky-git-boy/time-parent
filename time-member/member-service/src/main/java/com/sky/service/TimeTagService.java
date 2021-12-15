@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface TimeTagService {
     // 展示标签
-    List<TimeTagDTO> list(Long userId);
+    List<TimeTag> list(Long userId);
 
     // 添加
     int saveOrUpdate(TimeTagDTO dto, Long userId);

@@ -11,7 +11,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,16 +25,10 @@ public class TimeTagServiceImpl implements TimeTagService {
     private TimeTagMapper mapper;
 
     @Override
-    public List<TimeTagDTO> list(Long userId) {
-        List<TimeTagDTO> res = new ArrayList<>();
-        this.mapper.selectList(
+    public List<TimeTag> list(Long userId) {
+        return this.mapper.selectList(
                 new LambdaQueryWrapper<TimeTag>().eq(TimeTag::getUserId, userId)
-        ).forEach(s -> {
-            TimeTagDTO dto = new TimeTagDTO();
-            BeanUtils.copyProperties(s, dto);
-            res.add(dto);
-        });
-        return res;
+        );
     }
 
     @Override
