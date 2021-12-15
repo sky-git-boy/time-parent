@@ -26,7 +26,7 @@ public class TaskController {
      * todo看板
      */
     @GetMapping("/kanBan")
-    public R kanBan(@RequestBody TimeTaskDTO dto) {
+    public R kanBan(TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");

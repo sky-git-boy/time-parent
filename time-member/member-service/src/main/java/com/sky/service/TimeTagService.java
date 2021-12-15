@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.domain.TimeTag;
 import com.sky.dto.TimeTagDTO;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface TimeTagService {
     int delete(Long id);
 
     // 获取详情
-    TimeTagDTO getOne(Long id);
+    TimeTag getOne(Long id);
 }

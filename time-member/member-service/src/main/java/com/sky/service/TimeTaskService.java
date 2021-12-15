@@ -24,5 +24,5 @@ public interface TimeTaskService {
     int delete(Long id);
 
     // 获取详情
-    TimeTaskDTO getOne(Long id);
+    TimeTask getOne(Long id);
 }

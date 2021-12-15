@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.domain.TimeGold;
 import com.sky.dto.TimeGoldDTO;
 import com.sky.vo.DataGridView;
 
@@ -15,5 +16,5 @@ public interface TimeGoldService {
 
     int delete(Long id);
 
-    TimeGoldDTO getOne(Long id);
+    TimeGold getOne(Long id);
 }

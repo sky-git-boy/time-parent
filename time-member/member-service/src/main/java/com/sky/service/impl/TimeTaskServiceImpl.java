@@ -57,11 +57,8 @@ public class TimeTaskServiceImpl implements TimeTaskService {
     }
 
     @Override
-    public TimeTaskDTO getOne(Long id) {
-        TimeTask task = this.mapper.selectById(id);
-        TimeTaskDTO dto = new TimeTaskDTO();
-        BeanUtils.copyProperties(dto, task);
-        return dto;
+    public TimeTask getOne(Long id) {
+        return this.mapper.selectById(id);
     }
 
 

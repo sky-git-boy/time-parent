@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "个人目标的控制器")
 @RequestMapping("/goal")
-@PreAuthorize("hasAuthority('goal')")
+//@PreAuthorize("hasAuthority('goal')")
 public class GoldController {
 
     @Autowired
     private TimeGoldService service;
 
     @GetMapping("/list")
-    public R list(@RequestBody TimeGoldDTO dto) {
+    public R list(TimeGoldDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");

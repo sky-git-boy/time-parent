@@ -61,10 +61,7 @@ public class TimeTagServiceImpl implements TimeTagService {
     }
 
     @Override
-    public TimeTagDTO getOne(Long id) {
-        TimeTag tag = this.mapper.selectById(id);
-        TimeTagDTO dto = new TimeTagDTO();
-        BeanUtils.copyProperties(tag, dto);
-        return dto;
+    public TimeTag getOne(Long id) {
+        return this.mapper.selectById(id);
     }
 }
