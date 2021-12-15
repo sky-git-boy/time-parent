@@ -10,6 +10,7 @@ import com.sky.vo.DataGridView;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "个人反省的控制器")
 @RequestMapping("/journal")
+@PreAuthorize("hasAuthority('diary')")
 public class JournalController {
 
     @Autowired

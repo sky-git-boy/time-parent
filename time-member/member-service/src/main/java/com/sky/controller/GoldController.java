@@ -9,6 +9,7 @@ import com.sky.vo.DataGridView;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "个人目标的控制器")
 @RequestMapping("/goal")
+@PreAuthorize("hasAuthority('goal')")
 public class GoldController {
 
     @Autowired
