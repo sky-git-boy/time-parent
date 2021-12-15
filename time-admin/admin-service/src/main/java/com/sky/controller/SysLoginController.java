@@ -64,7 +64,7 @@ public class SysLoginController {
             logOperInfo.setStatus(String.valueOf(BusinessStatus.FAIL.ordinal()));
             logOperInfo.setErrorMsg(e.getMessage());
         }
-        logOperInfoService.save(logOperInfo);
+        this.logOperInfoService.save(logOperInfo);
         return ajax;
     }
 
@@ -82,7 +82,7 @@ public class SysLoginController {
         logOperInfo.setOperLocation(address);
 
         logOperInfo.setOperTime(new Date());
-        logOperInfo.setOperatorType(String.valueOf(OperatorType.OTHER.ordinal()));
+        logOperInfo.setOperatorType(String.valueOf(OperatorType.ADMIN.ordinal()));
 
         return logOperInfo;
     }
