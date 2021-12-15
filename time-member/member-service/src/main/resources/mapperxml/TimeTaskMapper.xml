@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.TimeTaskMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.TimeTask">
+    <!--@mbg.generated-->
+    <!--@Table time_task-->
+    <id column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="important" jdbcType="CHAR" property="important" />
+    <result column="tag_id" jdbcType="BIGINT" property="tagId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    task_id, title, description, `status`, important, tag_id, user_id, start_time, end_time
+  </sql>
+</mapper>
