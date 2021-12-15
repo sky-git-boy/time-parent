@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.TimeGoldMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.TimeGold">
+    <!--@mbg.generated-->
+    <!--@Table time_gold-->
+    <id column="gold_id" jdbcType="BIGINT" property="goldId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    gold_id, description, user_id, `status`, start_time, end_time
+  </sql>
+</mapper>
