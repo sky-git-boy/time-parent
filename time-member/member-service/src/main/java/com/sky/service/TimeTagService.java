@@ -15,7 +15,9 @@ public interface TimeTagService {
     // 添加
     int saveOrUpdate(TimeTagDTO dto, Long userId);
 
-    // 添加
+    // 删除
     int delete(Long id);
 
+    // 获取详情
+    TimeTagDTO getOne(Long id);
 }

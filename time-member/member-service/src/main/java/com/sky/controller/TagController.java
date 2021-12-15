@@ -47,4 +47,8 @@ public class TagController {
         return R.toAjax(this.service.delete(id));
     }
 
+    @GetMapping("/getOne/{id}")
+    public R getOne(@PathVariable("id") Long id) {
+        return R.success(this.service);
+    }
 }
