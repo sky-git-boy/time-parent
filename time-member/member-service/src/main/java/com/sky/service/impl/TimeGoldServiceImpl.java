@@ -52,4 +52,12 @@ public class TimeGoldServiceImpl implements TimeGoldService {
     public int delete(Long id) {
         return this.mapper.deleteById(id);
     }
+
+    @Override
+    public TimeGoldDTO getOne(Long id) {
+        TimeGold gold = this.mapper.selectById(id);
+        TimeGoldDTO dto = new TimeGoldDTO();
+        BeanUtils.copyProperties(dto, gold);
+        return dto;
+    }
 }

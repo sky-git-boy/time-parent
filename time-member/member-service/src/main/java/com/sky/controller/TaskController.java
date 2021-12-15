@@ -76,8 +76,8 @@ public class TaskController {
     /**
      * 获取详情
      */
-    @GetMapping("/getOne")
-    public R getOne(Long id) {
+    @GetMapping("/getOne/{id}")
+    public R getOne(@PathVariable("id") Long id) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");

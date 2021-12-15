@@ -69,9 +69,9 @@ public class JournalController {
     /**
      * 详情
      */
-    @GetMapping("/getOne")
-    public R getOne(String recordId) {
-        TimeJournal journal = this.service.getOne(recordId);
-        return R.success();
+    @GetMapping("/getOne/{id}")
+    public R getOne(@PathVariable("id") String id) {
+        TimeJournal journal = this.service.getOne(id);
+        return R.success(journal);
     }
 }

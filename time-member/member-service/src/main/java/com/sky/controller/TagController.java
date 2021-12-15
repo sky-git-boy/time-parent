@@ -49,6 +49,6 @@ public class TagController {
 
     @GetMapping("/getOne/{id}")
     public R getOne(@PathVariable("id") Long id) {
-        return R.success(this.service);
+        return R.success(this.service.getOne(id));
     }
 }

@@ -14,4 +14,6 @@ public interface TimeGoldService {
     int saveOrUpdate(TimeGoldDTO dto, Long userId);
 
     int delete(Long id);
+
+    TimeGoldDTO getOne(Long id);
 }
