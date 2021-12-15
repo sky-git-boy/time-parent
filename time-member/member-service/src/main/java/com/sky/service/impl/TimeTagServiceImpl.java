@@ -43,7 +43,7 @@ public class TimeTagServiceImpl implements TimeTagService {
         TimeTag tag = new TimeTag();
         BeanUtils.copyProperties(dto, tag);
         int flag;
-        if (null != tag.getTagId()) { // 新增
+        if (null == tag.getTagId()) { // 新增
             tag.setTagId(IdGeneratorSnowflake.snowflakeId());
             tag.setUserId(userId);
             tag.setCreateTime(new Date());
