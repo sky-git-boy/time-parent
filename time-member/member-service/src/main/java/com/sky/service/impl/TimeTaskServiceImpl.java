@@ -29,8 +29,8 @@ public class TimeTaskServiceImpl implements TimeTaskService {
                 .eq(TimeTask::getUserId, dto.getSimpleUser().getUserId())
                 .eq(StringUtils.isNotEmpty(dto.getStatus()), TimeTask::getStatus, dto.getStatus())
                 .like(StringUtils.isNotEmpty(dto.getTitle()), TimeTask::getTitle, dto.getTitle())
-                .eq(null != dto.getTagId(), TimeTask::getTagId, dto.getTagId())
-                .ge(null != dto.getStartTime(), TimeTask::getStartTime, dto.getStartTime())
+                .like(null != dto.getTags(), TimeTask::getTags, dto.getTags())
+                .ge(null != dto.getEndTime(), TimeTask::getEndTime, dto.getStartTime())
                 .le(null != dto.getEndTime(), TimeTask::getEndTime, dto.getEndTime())
         );
     }

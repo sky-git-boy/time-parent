@@ -9,9 +9,8 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="status" jdbcType="CHAR" property="status" />
     <result column="important" jdbcType="CHAR" property="important" />
-    <result column="tag_id" jdbcType="BIGINT" property="tagId" />
+    <result column="tags" jdbcType="BIGINT" property="tags" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
   </resultMap>
   <sql id="Base_Column_List">

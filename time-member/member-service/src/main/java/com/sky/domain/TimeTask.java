@@ -58,15 +58,15 @@ public class TimeTask extends BaseEntity {
      * 优先级（0无 1低 2中 3高 ）
      */
     @TableField(value = "important")
-    @ApiModelProperty(value = "优先级（0无 1低 2中 3高 ）")
+    @ApiModelProperty(value = "优先级（0否 1是 ）")
     private String important;
 
     /**
      * 标签ID
      */
-    @TableField(value = "tag_id")
-    @ApiModelProperty(value = "标签ID")
-    private Long tagId;
+    @TableField(value = "tags")
+    @ApiModelProperty(value = "标签（0无 1工作 2业务 3个人）")
+    private String tags;
 
     /**
      * 用户ID
@@ -74,13 +74,6 @@ public class TimeTask extends BaseEntity {
     @TableField(value = "user_id")
     @ApiModelProperty(value = "用户ID")
     private Long userId;
-
-    /**
-     * 创建时间
-     */
-    @TableField(value = "start_time")
-    @ApiModelProperty(value = "创建时间")
-    private Date startTime;
 
     /**
      * 结束时间
@@ -102,8 +95,6 @@ public class TimeTask extends BaseEntity {
     public static final String COL_TAG_ID = "tag_id";
 
     public static final String COL_USER_ID = "user_id";
-
-    public static final String COL_START_TIME = "start_time";
 
     public static final String COL_END_TIME = "end_time";
 }

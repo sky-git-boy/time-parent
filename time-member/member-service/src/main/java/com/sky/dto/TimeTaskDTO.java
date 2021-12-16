@@ -48,14 +48,14 @@ public class TimeTaskDTO extends BaseDTO {
     /**
      * 优先级（0无 1低 2中 3高 ）
      */
-    @ApiModelProperty(value = "优先级（0无 1低 2中 3高 ）")
+    @ApiModelProperty(value = "优先级（0否 1是）")
     private String important;
 
     /**
      * 标签ID
      */
-    @ApiModelProperty(value = "标签ID")
-    private Long tagId;
+    @ApiModelProperty(value = "标签（0无 1工作 2业务 3个人）")
+    private String tags;
 
     /**
      * 开始时间
