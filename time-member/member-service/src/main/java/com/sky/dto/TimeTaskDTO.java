@@ -1,5 +1,6 @@
 package com.sky.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -19,6 +21,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeTaskDTO extends BaseDTO {
 
     /**
@@ -31,12 +34,14 @@ public class TimeTaskDTO extends BaseDTO {
      * 标题
      */
     @ApiModelProperty(value = "标题")
+    @NotNull(message = "标题不能为空")
     private String title;
 
     /**
      * 描述
      */
     @ApiModelProperty(value = "描述")
+    @NotNull(message = "描述不能为空")
     private String description;
 
     /**

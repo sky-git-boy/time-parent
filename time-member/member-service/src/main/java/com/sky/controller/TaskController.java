@@ -1,6 +1,8 @@
 package com.sky.controller;
 
 import com.sky.domain.SimpleUser;
+import com.sky.domain.TimeTask;
+import com.sky.dto.KanBanDTO;
 import com.sky.dto.TimeTaskDTO;
 import com.sky.exception.BusinessException;
 import com.sky.service.TimeTaskService;
@@ -8,7 +10,10 @@ import com.sky.utils.SecurityUtils;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author sky
@@ -32,7 +37,20 @@ public class TaskController {
             throw new BusinessException("获取用户信息失败");
         }
         dto.setSimpleUser(user);
-        return R.success(this.service.getTaskByStatus(dto));
+
+        KanBanDTO res = new KanBanDTO();
+        for (int i=0; i<3; i++) {
+            dto.setStatus(i+"");
+            List<TimeTask> list = this.service.getTaskByStatus(dto);
+            if (i==0)
+                res.setTodo(list);
+            else if (i==1)
+                res.setDoing(list);
+            else
+                res.setDone(list);
+        }
+
+        return R.success(res);
     }
 
     /**
@@ -52,7 +70,7 @@ public class TaskController {
      * 添加任务
      */
     @PostMapping("/add")
-    public R add(@RequestBody TimeTaskDTO dto) {
+    public R add(@RequestBody @Validated TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
             throw new BusinessException("获取用户信息失败");
