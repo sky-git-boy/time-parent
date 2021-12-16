@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
         ResponseEntity<JwtToken> tokenResponseEntity = client.getToken(Constants.grantType, params.getUsername(), params.getPassword(), Constants.MemberType, basicToken);
         if (tokenResponseEntity.getStatusCode() == HttpStatus.OK) {
             JwtToken jwtToken = tokenResponseEntity.getBody();
-            log.info("远程调用成功,结果为", JSON.toJSONString(jwtToken, true));
+            log.info("远程调用成功,结果为 {}", JSON.toJSONString(jwtToken, true));
             // token 必须包含bearer
             loginUser = new LoginUser(params.getUsername(), jwtToken.getExpiresIn(), jwtToken.getTokenType() + " " + jwtToken.getAccessToken(), jwtToken.getRefreshToken());
             // 使用网关解决登出的问题:

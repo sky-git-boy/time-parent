@@ -47,7 +47,9 @@ public class TimeJournalServiceImpl implements TimeJournalService {
     public DataGridView listPage(TimeJournalDTO dto) {
         Page<TimeJournal> page = new Page<>(dto.getPageNum(), dto.getPageSize());
         QueryWrapper<TimeJournal> qw = new QueryWrapper<>();
-        qw.eq(StringUtils.isNotEmpty(dto.getTitle()), TimeJournal.COL_TITLE, dto);
+        qw.like(StringUtils.isNotEmpty(dto.getTitle()), TimeJournal.COL_TITLE, dto.getTitle())
+                .or()
+                .like(StringUtils.isNotEmpty(dto.getTitle()), TimeJournal.COL_DESCRIPTION, dto.getTitle());
         qw.eq(TimeJournal.COL_USER_ID, dto.getSimpleUser().getUserId());
         this.mapper.selectPage(page, qw);
         return new DataGridView(page.getTotal(), page.getRecords());
