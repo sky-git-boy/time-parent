@@ -1,5 +1,6 @@
 package com.sky.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -72,6 +73,7 @@ public class TimeTaskDTO extends BaseDTO {
      * 结束时间
      */
     @ApiModelProperty(value = "结束时间")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
     private Date endTime;
 
 }
