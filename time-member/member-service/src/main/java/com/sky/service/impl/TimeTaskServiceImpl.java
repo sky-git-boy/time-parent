@@ -1,6 +1,7 @@
 package com.sky.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.sky.constants.Constants;
 import com.sky.domain.TimeTask;
 import com.sky.dto.TimeTaskDTO;
 import com.sky.mapper.TimeTaskMapper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +42,12 @@ public class TimeTaskServiceImpl implements TimeTaskService {
     public int updateTask(TimeTaskDTO dto) {
         TimeTask task = new TimeTask();
         BeanUtils.copyProperties(dto, task);
+        // 已完成（添加完成时间）
+        if (task.getStatus().equals(Constants.TASK_STATUS_DONE)) {
+            task.setDoneTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        } else {
+            task.setDoneTime("");
+        }
         return this.mapper.updateById(task);
     }
 
@@ -49,6 +57,10 @@ public class TimeTaskServiceImpl implements TimeTaskService {
         BeanUtils.copyProperties(dto, task);
         task.setUserId(dto.getSimpleUser().getUserId());
         task.setTaskId(IdGeneratorSnowflake.snowflakeId());
+        // 已完成（添加完成时间）
+        if (task.getStatus().equals(Constants.TASK_STATUS_DONE)) {
+            task.setDoneTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        }
         return this.mapper.insert(task);
     }
 

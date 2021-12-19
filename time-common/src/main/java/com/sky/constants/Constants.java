@@ -184,4 +184,12 @@ public interface Constants {
      */
     String LOGIN_TYPE_SYSTEM = "0";
     String LOGIN_TYPE_MEMBER = "1";
+
+    /**
+     * 任务状态
+     */
+    String TASK_STATUS_TODO = "0";  // 待办
+    String TASK_STATUS_DOING = "1"; // 进行中
+    String TASK_STATUS_DONE = "2";  // 已办
+    String TASK_STATUS_EXPIRE = "3";// 过期
 }

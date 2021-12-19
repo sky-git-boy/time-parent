@@ -1,9 +1,6 @@
 package com.sky.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -82,6 +79,13 @@ public class TimeTask extends BaseEntity {
     @ApiModelProperty(value = "结束时间")
     private Date endTime;
 
+    /**
+     * 完成时间
+     */
+    @TableField(value = "done_time", updateStrategy = FieldStrategy.IGNORED)
+    @ApiModelProperty(value = "完成时间")
+    private String doneTime;
+
     public static final String COL_TASK_ID = "task_id";
 
     public static final String COL_TITLE = "title";
@@ -97,4 +101,6 @@ public class TimeTask extends BaseEntity {
     public static final String COL_USER_ID = "user_id";
 
     public static final String COL_END_TIME = "end_time";
+
+    public static final String COL_DONE_TIME = "done_time";
 }

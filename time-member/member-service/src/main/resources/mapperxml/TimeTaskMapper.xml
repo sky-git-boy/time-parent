@@ -12,9 +12,10 @@
     <result column="tags" jdbcType="BIGINT" property="tags" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="done_time" jdbcType="VARCHAR" property="doneTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    task_id, title, description, `status`, important, tag_id, user_id, start_time, end_time
+    task_id, title, description, `status`, important, tags, user_id, end_time, done_time
   </sql>
 </mapper>
