@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -24,14 +25,14 @@ public class TimeTaskServiceImpl implements TimeTaskService {
     private TimeTaskMapper mapper;
 
     @Override
-    public List<TimeTask> getTaskByStatus(TimeTaskDTO dto) {
+    public List<TimeTask> getTaskList(TimeTaskDTO dto) {
         return this.mapper.selectList(new LambdaQueryWrapper<TimeTask>()
                 .eq(TimeTask::getUserId, dto.getSimpleUser().getUserId())
                 .eq(StringUtils.isNotEmpty(dto.getStatus()), TimeTask::getStatus, dto.getStatus())
                 .like(StringUtils.isNotEmpty(dto.getTitle()), TimeTask::getTitle, dto.getTitle())
-                .like(null != dto.getTags(), TimeTask::getTags, dto.getTags())
-                .ge(null != dto.getEndTime(), TimeTask::getEndTime, dto.getStartTime())
-                .le(null != dto.getEndTime(), TimeTask::getEndTime, dto.getEndTime())
+                .like(StringUtils.isNotEmpty(dto.getTags()), TimeTask::getTags, dto.getTags())
+                .ge(null != dto.getBeginTime(), TimeTask::getEndTime, dto.getBeginTime())
+                .le(null != dto.getQEndTime(), TimeTask::getEndTime, dto.getQEndTime())
         );
     }
 

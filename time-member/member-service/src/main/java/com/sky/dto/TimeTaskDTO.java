@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -64,16 +65,17 @@ public class TimeTaskDTO extends BaseDTO {
     private String tags;
 
     /**
-     * 开始时间
-     */
-    @ApiModelProperty(value = "开始时间")
-    private Date startTime;
-
-    /**
      * 结束时间
      */
     @ApiModelProperty(value = "结束时间")
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
     private Date endTime;
+
+    /**
+     * 结束时间
+     */
+    @ApiModelProperty(value = "查询结束时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date qEndTime;
 
 }

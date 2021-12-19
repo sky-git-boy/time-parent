@@ -41,7 +41,7 @@ public class TaskController {
         KanBanDTO res = new KanBanDTO();
         for (int i=0; i<3; i++) {
             dto.setStatus(i+"");
-            List<TimeTask> list = this.service.getTaskByStatus(dto);
+            List<TimeTask> list = this.service.getTaskList(dto);
             if (i==0)
                 res.setTodo(list);
             else if (i==1)
@@ -52,6 +52,20 @@ public class TaskController {
 
         return R.success(res);
     }
+
+    /**
+     * 任务列表
+     */
+    @GetMapping("/list")
+    public R list(TimeTaskDTO dto) {
+        SimpleUser user = SecurityUtils.getUser();
+        if (null == user.getUserId()) {
+            throw new BusinessException("获取用户信息失败");
+        }
+        dto.setSimpleUser(user);
+        return R.success(this.service.getTaskList(dto));
+    }
+
 
     /**
      * 修改任务

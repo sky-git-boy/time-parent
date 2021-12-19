@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface TimeTaskService {
 
-    // 通过状态获取任务
-    List<TimeTask> getTaskByStatus(TimeTaskDTO dto);
+    // 获取任务列表
+    List<TimeTask> getTaskList(TimeTaskDTO dto);
 
     // 修改任务
     int updateTask(TimeTaskDTO dto);
