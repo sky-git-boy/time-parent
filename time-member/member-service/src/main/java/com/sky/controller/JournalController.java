@@ -1,5 +1,7 @@
 package com.sky.controller;
 
+import com.sky.aspectj.annotation.Log;
+import com.sky.aspectj.enums.BusinessType;
 import com.sky.domain.SimpleUser;
 import com.sky.domain.TimeJournal;
 import com.sky.dto.TimeJournalDTO;
@@ -42,6 +44,7 @@ public class JournalController {
      * 添加反省
      */
     @PostMapping("/add")
+    @Log(title = "添加个人反省", businessType = BusinessType.INSERT)
     public R add(@RequestBody @Validated TimeJournalDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -56,6 +59,7 @@ public class JournalController {
      * 修改
      */
     @PutMapping("/update")
+    @Log(title = "修改个人反省", businessType = BusinessType.UPDATE)
     public R update(@RequestBody @Validated TimeJournalDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
