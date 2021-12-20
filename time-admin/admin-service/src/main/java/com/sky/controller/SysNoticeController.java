@@ -24,7 +24,6 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/notice")
-@PreAuthorize("hasAuthority('portal_notice')")
 public class SysNoticeController {
 
     @Autowired
@@ -42,6 +41,7 @@ public class SysNoticeController {
      * 添加
      */
     @PostMapping("addNotice")
+    @PreAuthorize("hasAuthority('portal_notice')")
     @Log(title = "添加公告", businessType = BusinessType.INSERT)
     public R addNotice(@RequestBody @Validated NoticeDTO noticeDto) {
         SimpleUser user = SecurityUtils.getUser();
@@ -56,6 +56,7 @@ public class SysNoticeController {
      * 修改
      */
     @PutMapping("updateNotice")
+    @PreAuthorize("hasAuthority('portal_notice')")
     @Log(title = "修改公告", businessType = BusinessType.UPDATE)
     public R updateNotice(@RequestBody @Validated NoticeDTO noticeDto) {
         SimpleUser user = SecurityUtils.getUser();
@@ -79,6 +80,7 @@ public class SysNoticeController {
      * 删除
      */
     @DeleteMapping("deleteNoticeByIds/{noticeIds}")
+    @PreAuthorize("hasAuthority('portal_notice')")
     @Log(title = "删除公告", businessType = BusinessType.DELETE)
     public R deleteNoticeByIds(@PathVariable @Validated @NotEmpty(message = "要删除的ID不能为空") Long[] noticeIds) {
         return R.toAjax(this.noticeService.deleteNoticeByIds(noticeIds));
