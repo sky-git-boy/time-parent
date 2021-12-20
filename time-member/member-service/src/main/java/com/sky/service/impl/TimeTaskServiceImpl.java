@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sky.constants.Constants;
 import com.sky.domain.TimeTask;
 import com.sky.dto.TimeTaskDTO;
+import com.sky.dto.YearDoneCountDTO;
 import com.sky.mapper.TimeTaskMapper;
 import com.sky.service.TimeTaskService;
 import com.sky.utils.IdGeneratorSnowflake;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -72,6 +74,15 @@ public class TimeTaskServiceImpl implements TimeTaskService {
     @Override
     public TimeTask getOne(Long id) {
         return this.mapper.selectById(id);
+    }
+
+    @Override
+    public Object[] doneCount(Long userId) {
+        List<Object[]> res = new ArrayList<>();
+        this.mapper.doneCunt(userId).forEach(s -> {
+            res.add(new Object[]{s.getTime(), s.getCount()});
+        });
+        return res.toArray();
     }
 
 

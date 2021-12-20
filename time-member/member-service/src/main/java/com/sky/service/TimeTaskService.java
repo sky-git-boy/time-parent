@@ -2,6 +2,7 @@ package com.sky.service;
 
 import com.sky.domain.TimeTask;
 import com.sky.dto.TimeTaskDTO;
+import com.sky.dto.YearDoneCountDTO;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface TimeTaskService {
 
     // 获取详情
     TimeTask getOne(Long id);
+
+    // 获取一年的完成数量
+    Object[] doneCount(Long userId);
 }
