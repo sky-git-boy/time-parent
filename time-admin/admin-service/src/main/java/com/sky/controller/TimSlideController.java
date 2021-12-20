@@ -23,7 +23,6 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/slide")
-@PreAuthorize("hasAuthority('portal_slide')")
 public class TimSlideController {
     @Autowired
     private TimeSlideService slideService;
@@ -39,6 +38,7 @@ public class TimSlideController {
      * 添加
      */
     @PostMapping("addSlide")
+    @PreAuthorize("hasAuthority('portal_slide')")
     @Log(title = "添加轮播图", businessType = BusinessType.INSERT)
     public R addNotice(@RequestBody SlideDTO slideDTO) {
         SimpleUser user = SecurityUtils.getUser();
@@ -53,6 +53,7 @@ public class TimSlideController {
      * 修改
      */
     @PutMapping("updateSlide")
+    @PreAuthorize("hasAuthority('portal_slide')")
     @Log(title = "修改轮播图", businessType = BusinessType.UPDATE)
     public R updateNotice(@RequestBody SlideDTO slideDTO) {
         SimpleUser user = SecurityUtils.getUser();
@@ -67,6 +68,7 @@ public class TimSlideController {
      * 删除
      */
     @DeleteMapping("deleteSlideByIds/{slideIds}")
+    @PreAuthorize("hasAuthority('portal_slide')")
     @Log(title = "删除轮播图", businessType = BusinessType.DELETE)
     public R deleteNoticeByIds(@PathVariable @NotEmpty(message = "要删除的ID不能为空") Long[] slideIds) {
         return R.toAjax(this.slideService.deleteSlideByIds(slideIds));
