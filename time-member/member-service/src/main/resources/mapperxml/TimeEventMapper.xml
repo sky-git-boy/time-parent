@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.TimeEventMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.TimeEvent">
+    <!--@mbg.generated-->
+    <!--@Table time_event-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="tags" jdbcType="CHAR" property="tags" />
+    <result column="classes" jdbcType="VARCHAR" property="classes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    event_id, title, start_time, end_time, user_id, tags, classes
+  </sql>
+</mapper>
