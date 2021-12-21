@@ -54,7 +54,7 @@ public class TimeMusicServiceImpl implements TimeMusicService {
         BeanUtils.copyProperties(musicDTO, music);
         music.setUpdateBy(musicDTO.getSimpleUser().getUserId());
         music.setUpdateTime(new Date());
-        return this.mapper.insert(music);
+        return this.mapper.updateById(music);
     }
 
     @Override
