@@ -36,6 +36,7 @@ public class LogOperInfoServiceImpl extends ServiceImpl<LogOperInfoMapper, LogOp
         qw.eq(StringUtils.isNotBlank(operLogDto.getStatus()), LogOperInfo.COL_STATUS, operLogDto.getStatus());
         qw.ge(null != operLogDto.getBeginTime(), LogOperInfo.COL_OPER_TIME, operLogDto.getBeginTime());
         qw.le(null != operLogDto.getEndTime(), LogOperInfo.COL_OPER_TIME, operLogDto.getEndTime());
+        qw.orderByDesc(LogOperInfo.COL_OPER_TIME);
         this.operInfoMapper.selectPage(page, qw);
         return new DataGridView(page.getTotal(), page.getRecords());
     }
