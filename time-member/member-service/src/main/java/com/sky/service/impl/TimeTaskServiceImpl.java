@@ -60,7 +60,7 @@ public class TimeTaskServiceImpl implements TimeTaskService {
         task.setUserId(dto.getSimpleUser().getUserId());
         task.setTaskId(IdGeneratorSnowflake.snowflakeId());
         // 已完成（添加完成时间）
-        if (task.getStatus().equals(Constants.TASK_STATUS_DONE)) {
+        if (null != task.getStatus() && task.getStatus().equals(Constants.TASK_STATUS_DONE)) {
             task.setDoneTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         }
         return this.mapper.insert(task);
