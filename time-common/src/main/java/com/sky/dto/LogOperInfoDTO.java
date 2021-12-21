@@ -35,7 +35,7 @@ public class LogOperInfoDTO extends BaseDTO {
      * 操作人员
      */
     @ApiModelProperty(value = "操作人员")
-    private String operBy;
+    private Long operBy;
 
     /**
      * 操作状态（0正常 1异常）

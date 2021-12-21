@@ -30,7 +30,7 @@ public class LogOperInfoServiceImpl extends ServiceImpl<LogOperInfoMapper, LogOp
     public DataGridView listForPage(LogOperInfoDTO operLogDto) {
         QueryWrapper<LogOperInfo> qw = new QueryWrapper<>();
         Page<LogOperInfo> page = new Page<>(operLogDto.getPageNum(), operLogDto.getPageSize());
-        qw.like(StringUtils.isNotBlank(operLogDto.getOperBy()), LogOperInfo.COL_OPER_BY, operLogDto.getOperBy());
+        qw.like(null != operLogDto.getOperBy(), LogOperInfo.COL_OPER_BY, operLogDto.getOperBy());
         qw.like(StringUtils.isNotBlank(operLogDto.getTitle()), LogOperInfo.COL_TITLE, operLogDto.getTitle());
         qw.eq(StringUtils.isNotBlank(operLogDto.getBusinessType()), LogOperInfo.COL_BUSINESS_TYPE, operLogDto.getBusinessType());
         qw.eq(StringUtils.isNotBlank(operLogDto.getStatus()), LogOperInfo.COL_STATUS, operLogDto.getStatus());
