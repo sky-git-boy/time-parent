@@ -74,7 +74,7 @@ public class TaskController {
      * 修改任务
      */
     @PutMapping("/update")
-    @Log(title = "修改任务", businessType = BusinessType.UPDATE, operatorType = OperatorType.MEMBER)
+    @Log(title = "修改个人任务", businessType = BusinessType.UPDATE, operatorType = OperatorType.MEMBER)
     public R update(@RequestBody TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -88,7 +88,7 @@ public class TaskController {
      * 添加任务
      */
     @PostMapping("/add")
-    @Log(title = "添加任务", businessType = BusinessType.INSERT, operatorType = OperatorType.MEMBER)
+    @Log(title = "添加个人任务", businessType = BusinessType.INSERT, operatorType = OperatorType.MEMBER)
     public R add(@RequestBody @Validated TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -102,7 +102,7 @@ public class TaskController {
      * 删除任务
      */
     @DeleteMapping("/delete/{id}")
-    @Log(title = "添加任务", businessType = BusinessType.DELETE, operatorType = OperatorType.MEMBER)
+    @Log(title = "删除个人任务", businessType = BusinessType.DELETE, operatorType = OperatorType.MEMBER)
     public R delete(@PathVariable("id") Long id) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {

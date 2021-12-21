@@ -5,6 +5,7 @@ import com.sky.aspectj.enums.BusinessStatus;
 import com.sky.aspectj.enums.BusinessType;
 import com.sky.aspectj.enums.OperatorType;
 import com.sky.domain.LogOperInfo;
+import com.sky.params.RegisterParams;
 import com.sky.service.LogOperInfoService;
 import com.sky.utils.AddressUtils;
 import com.sky.utils.IpUtils;
@@ -53,6 +54,13 @@ public class LoginController {
         }
         this.logOperInfoService.save(logOperInfo);
         return R.success(loginUser);
+    }
+
+    @PostMapping("/register")
+    @ApiOperation(value = "用户注册")
+    public R register(@RequestBody @Validated RegisterParams params) {
+
+        return null;
     }
 
     private LogOperInfo createLogOperInfo(LoginParams params) {
