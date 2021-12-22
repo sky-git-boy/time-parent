@@ -1,8 +1,11 @@
 package com.sky.service.impl;
 
 import com.sky.constants.Constants;
+import com.sky.dto.RemoteUserDTO;
+import com.sky.feign.UserServiceFeign;
 import com.sky.params.RegisterParams;
 import com.sky.service.RegisterService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ public class RegisterServiceImpl implements RegisterService {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Autowired
+    private UserServiceFeign userServiceFeign;
+
     @Override
     public int register(RegisterParams params) {
 
@@ -31,6 +37,14 @@ public class RegisterServiceImpl implements RegisterService {
 
         // 远程调用 admin-serve ，进行注册
 
-        return 0;
+        try {
+            RemoteUserDTO dto = new RemoteUserDTO();
+            BeanUtils.copyProperties(params, dto);
+            return userServiceFeign.register(dto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 }

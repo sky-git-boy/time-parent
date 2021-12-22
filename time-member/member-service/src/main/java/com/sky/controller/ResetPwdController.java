@@ -56,8 +56,8 @@ public class ResetPwdController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return R.toAjax(this.service.resetPwd(params));
+        int i = this.service.resetPwd(params);
+        return i > 0 ? R.success("重置密码成功") : R.fail("手机号或验证码有误!!!");
     }
 
 }

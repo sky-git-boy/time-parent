@@ -16,12 +16,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sky.mapper.SysUserMapper;
 import com.sky.domain.SysUser;
 import com.sky.service.SysUserService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author sky
@@ -133,6 +135,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         user.setDelFlag(Constants.DEL_FALSE);
         user.setStatus(Constants.STATUS_TRUE);
         user.setPicture(Constants.DEFAULT_PICTURE);
+        user.setCreateTime(new Date());
 
         user.setUserId(IdGeneratorSnowflake.snowflakeId());
 
@@ -141,6 +144,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         user.setUserName(dto.getUserName());
 
-        return this.userMapper.insert(user);
+        try {
+            // 添加用户
+            this.userMapper.insert(user);
+            // 设置用户权限
+            this.roleMapper.saveRoleUser(user.getUserId(), Constants.ROLE_USER_ID, null, new Date());
+
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

@@ -152,4 +152,9 @@ public interface Constants {
      * 用户默认头像
      */
     String DEFAULT_PICTURE = "https://garbage-sorting.oss-cn-shenzhen.aliyuncs.com/2021/09/23/c8eaabf188a648a69fc73c9c09c905a4!400x400.jpg";
+
+    /**
+     * 普通会员角色ID
+     */
+    Long ROLE_USER_ID = 2L;
 }

@@ -149,6 +149,11 @@ public class SysUserController implements UserServiceFeign {
 
     @Override
     public int register(RemoteUserDTO dto) {
+        SysUser user = this.userService.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getPhone, dto.getPhone()));
+        if (null != user) {
+            return -1;
+        }
+
         return this.userService.register(dto);
     }
 }

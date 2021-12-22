@@ -12,7 +12,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class RegisterParams {
 
-    @ApiModelProperty(value = "用户名称")
+    @ApiModelProperty("用户名")
+    @NotBlank(message = "用户名不能为空")
+    private String userName;
+
+    @ApiModelProperty(value = "手机号")
     @NotBlank(message = "账号不能为空")
     private String phone;
 

@@ -3,6 +3,7 @@ package com.sky.controller;
 import com.sky.dto.RemoteUserDTO;
 import com.sky.feign.UserServiceFeign;
 import com.sky.params.RegisterParams;
+import com.sky.service.RegisterService;
 import com.sky.utils.TsmsUtil;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
@@ -26,6 +27,9 @@ public class RegisterController {
     @Autowired
     private UserServiceFeign userServiceFeign;
 
+    @Autowired
+    private RegisterService registerService;
+
     @PostMapping("/sendRegisterMail")
     public R sendMail(@RequestParam String phone) {
         // 发送验证码
@@ -47,9 +51,8 @@ public class RegisterController {
     @PostMapping()
     @ApiOperation("用户注册")
     public R register(@RequestBody @Validated RegisterParams params) {
-
-
-       return R.success();
+        int i = this.registerService.register(params);
+        return i > 0 ? R.success("用户注册成功") : R.fail("手机号或验证码有误!!!");
     }
 
 }
