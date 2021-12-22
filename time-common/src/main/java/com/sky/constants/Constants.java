@@ -49,28 +49,9 @@ public interface Constants {
     Integer FAIL = 500;
 
     /**
-     * 验证码 redis key
-     */
-    String CAPTCHA_CODE_KEY = "captcha_codes:";
-
-    /**
      * 验证码有效期（分钟）
      */
     long CAPTCHA_EXPIRATION = 2;
-
-    /**
-     * 数值类型精度
-     */
-    int SCALE = 8;
-
-    int AGENT_TYPE = 2;
-
-    String BCRYPT_SALT = "!waihui!_+waihui+-";
-
-    /**
-     * 首页Banner图
-     */
-    String CONFIG_WEB_BANNER = "WEB_BANNER";
 
     /**
      * 令牌
@@ -81,20 +62,11 @@ public interface Constants {
 
 
     /************************************* REDIS KEY ************************************/
-    /**
-     * 验证码redis存储Key
-     */
-    String REDIS_KEY_CAPTCHA_KEY = "CAPTCHA:";
 
     /**
      * 短信验证码redis存储Key
      */
     String REDIS_KEY_SMS_CODE_KEY = "SMSCODE:";
-
-    /**
-     * 登录设备存储key
-     */
-    String REDIS_KEY_DEVICES_KEY = "DEVICES";
 
     /**
      * 最大缓存数据量
@@ -123,6 +95,7 @@ public interface Constants {
 
     /**
      * 返回检验码
+     * 0注册验证码 1修改密码
      */
     String UNIQUE = "0";
     String NOT_UNIQUE = "1";
@@ -145,28 +118,6 @@ public interface Constants {
     String MENU_TYPE_M = "0";
     String MENU_TYPE_C = "1";
     String MENU_TYPE_P = "2"; // 前台
-
-    /**
-     * 支付单状态状态，0未支付,1已支付，2支付超时
-     */
-    String ORDER_STATUS_0 = "0";
-    String ORDER_STATUS_1 = "1";
-    String ORDER_STATUS_2 = "2";
-
-    /**
-     * 订单子项目支付状态
-     * 0未支付，1已支付，2，已退费  3，已完成
-     */
-    String ORDER_DETAILS_STATUS_0 = "0";
-    String ORDER_DETAILS_STATUS_1 = "1";
-    String ORDER_DETAILS_STATUS_2 = "2";
-    String ORDER_DETAILS_STATUS_3 = "3";
-
-    /**
-     * 支付类型
-     */
-    String PAY_TYPE_0 = "0";//现金
-    String PAY_TYPE_1 = "1";//支付宝
 
     /**
      * redis的字典前缀
