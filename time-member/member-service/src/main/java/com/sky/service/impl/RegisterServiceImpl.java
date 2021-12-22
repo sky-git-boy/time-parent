@@ -40,7 +40,9 @@ public class RegisterServiceImpl implements RegisterService {
         try {
             RemoteUserDTO dto = new RemoteUserDTO();
             BeanUtils.copyProperties(params, dto);
-            return userServiceFeign.register(dto);
+            int register = userServiceFeign.register(dto);
+            System.out.println("_______" + register);
+            return register;
         } catch (Exception e) {
             e.printStackTrace();
         }

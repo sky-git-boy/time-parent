@@ -148,9 +148,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             // 添加用户
             this.userMapper.insert(user);
             // 设置用户权限
-            this.roleMapper.saveRoleUser(user.getUserId(), Constants.ROLE_USER_ID, null, new Date());
+            return this.roleMapper.saveRoleUser(user.getUserId(), Constants.ROLE_USER_ID, null, new Date());
 
-            return 1;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -35,12 +35,12 @@ public class TsmsUtil {
     @Autowired
     private LogSmsInfoService smsInfoService;
 
-    public String sendSMS(String phone, boolean flag) {
+    public int sendSMS(String phone, boolean flag) {
 
         // 限制两分钟内不能重复发给同一个人
         if (null != redisTemplate.opsForValue().get(Constants.REDIS_KEY_REGISTER_SMS_KEY + phone)
                 || null != redisTemplate.opsForValue().get(Constants.REDIS_KEY_RESETPWD_SMS_KEY + phone)) {
-            return "不允许重复发送短信";
+            return -1;
         }
 
         String reStr = ""; // 定义返回值
@@ -95,10 +95,11 @@ public class TsmsUtil {
             else
                 redisTemplate.opsForValue().set(Constants.REDIS_KEY_RESETPWD_SMS_KEY + phone, code,
                         Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return reStr;
+        return -1;
     }
 }

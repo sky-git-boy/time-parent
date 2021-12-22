@@ -31,7 +31,6 @@ public class ResetPwdController {
     public R sendMail(@RequestParam String phone) {
 
         // 发送验证码
-        String res = null;
         try {
             // 查询用户是否存在
             RemoteUserDTO user = userServiceFeign.getUserByPhone(phone);
@@ -40,12 +39,11 @@ public class ResetPwdController {
                 return R.fail("该手机号并未注册");
             }
 
-            res = tsmsUtil.sendSMS(phone, false);
-            return R.success(res);
+            return R.toAjax(tsmsUtil.sendSMS(phone, false));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return R.fail(res);
+        return R.fail("发送验证码失败");
     }
 
     @PostMapping("/resetPwd")
