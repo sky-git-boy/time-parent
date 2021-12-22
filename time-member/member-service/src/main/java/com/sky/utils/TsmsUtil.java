@@ -41,7 +41,7 @@ public class TsmsUtil {
         String code = RandomUtil.randomNumbers(4);
         try {
             // 参数，一定要对应短信模板中的参数顺序和个数，
-            String[] params = {code};
+            String[] params = {code, String.valueOf(Constants.CAPTCHA_EXPIRATION)};
             // 创建ssender对象
             SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
 
@@ -49,7 +49,7 @@ public class TsmsUtil {
             if (flag)
                 templateId = 1195405; // 注册
             else
-                templateId = 1128009; // 重置密码
+                templateId = 1251195; // 重置密码
 
             // 发送
             SmsSingleSenderResult result = ssender.sendWithParam("86", phone, templateId, params, smsSign, "", "");

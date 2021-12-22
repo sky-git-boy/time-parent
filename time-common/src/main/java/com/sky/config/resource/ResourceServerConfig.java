@@ -28,7 +28,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/login" ,
-                        "/slide/listSlideForPage" ,
+                        "/slide/listSlideForPage",
+                        "/reset/sendResetMail",
+                        "/register/sendRegisterMail",
+                        "/users/getUser",
                         "/v2/api-docs",
                         "/swagger-resources/configuration/ui",//用来获取支持的动作
                         "/swagger-resources",//用来获取api-docs的URI

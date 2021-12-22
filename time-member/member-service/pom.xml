@@ -47,6 +47,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.sky</groupId>
+            <artifactId>admin-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.qcloudsms</groupId>
             <artifactId>qcloudsms</artifactId>
             <version>1.0.5</version>

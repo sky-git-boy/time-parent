@@ -20,6 +20,10 @@ public class RegisterParams {
     @NotBlank(message = "邮箱不能为空")
     private String email;
 
+    @ApiModelProperty(value = "验证码")
+    @NotBlank(message = "验证码不能为空")
+    private String yzm;
+
     @ApiModelProperty(value = "用户密码")
     @NotBlank(message = "密码不能为空")
     private String password;

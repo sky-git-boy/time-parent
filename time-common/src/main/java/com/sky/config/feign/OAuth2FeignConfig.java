@@ -4,6 +4,7 @@ import com.sky.constants.Constants;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
@@ -13,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
+@Configuration
 public class OAuth2FeignConfig implements RequestInterceptor {
 
     /**
@@ -29,6 +31,9 @@ public class OAuth2FeignConfig implements RequestInterceptor {
         } else {
             HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
             header = request.getHeader(HttpHeaders.AUTHORIZATION); // 获取我们请求上下文的头里面的AUTHORIZATION
+            if (header == null) {
+                header = Constants.BEARER + Constants.INSIDE_TOKEN;
+            }
         }
 
         if (!StringUtils.isEmpty(header)) {
