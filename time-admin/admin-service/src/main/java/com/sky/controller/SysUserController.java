@@ -141,4 +141,14 @@ public class SysUserController implements UserServiceFeign {
 
         return dto;
     }
+
+    @Override
+    public int resetPwd(RemoteUserDTO dto) {
+        return this.userService.changePwd(dto);
+    }
+
+    @Override
+    public int register(RemoteUserDTO dto) {
+        return this.userService.register(dto);
+    }
 }

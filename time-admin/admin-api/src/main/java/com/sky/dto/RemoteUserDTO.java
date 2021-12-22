@@ -15,7 +15,15 @@ public class RemoteUserDTO {
     @ApiModelProperty("用户ID")
     private Long userId;
 
+    @ApiModelProperty("用户名")
+    private String userName;
+
     @ApiModelProperty("手机号")
     private String phone;
 
+    @ApiModelProperty("用户邮箱")
+    private String email;
+
+    @ApiModelProperty("用户密码")
+    private String password;
 }

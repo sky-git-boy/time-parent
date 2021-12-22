@@ -5,8 +5,10 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sky.constants.Constants;
+import com.sky.dto.RemoteUserDTO;
 import com.sky.dto.UserDTO;
 import com.sky.mapper.SysRoleMapper;
+import com.sky.utils.IdGeneratorSnowflake;
 import com.sky.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         String defaultPwd = user.getPhone().substring(5);
         user.setCreateBy(userDto.getSimpleUser().getUserId());
         user.setCreateTime(DateUtil.date());
+        user.setPicture(Constants.DEFAULT_PICTURE);
         // BCryptPasswordEncoder 对密码进行加密
         user.setPassword(new BCryptPasswordEncoder().encode(defaultPwd));
         return this.userMapper.insert(user);
@@ -111,5 +114,33 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         qw.eq(SysUser.COL_USER_TYPE, Constants.USER_NORMAL);
         qw.orderByAsc(SysUser.COL_USER_ID);
         return this.userMapper.selectList(qw);
+    }
+
+    @Override
+    public int changePwd(RemoteUserDTO dto) {
+        SysUser user = this.userMapper.selectById(dto.getUserId());
+        // 判断是否为前台用户
+        if (user.getUserType().equals(Constants.USER_NORMAL)) {
+            user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
+        }
+        return this.userMapper.updateById(user);
+    }
+
+    @Override
+    public int register(RemoteUserDTO dto) {
+        SysUser user = new SysUser();
+        user.setUserType(Constants.USER_NORMAL);
+        user.setDelFlag(Constants.DEL_FALSE);
+        user.setStatus(Constants.STATUS_TRUE);
+        user.setPicture(Constants.DEFAULT_PICTURE);
+
+        user.setUserId(IdGeneratorSnowflake.snowflakeId());
+
+        user.setPhone(dto.getPhone());
+        user.setEmail(dto.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
+        user.setUserName(dto.getUserName());
+
+        return this.userMapper.insert(user);
     }
 }

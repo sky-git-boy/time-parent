@@ -35,7 +35,6 @@ public class ResetPwdController {
         try {
             // 查询用户是否存在
             RemoteUserDTO user = userServiceFeign.getUserByPhone(phone);
-            System.out.println(user);
 
             if (null == user) {
                 return R.fail("该手机号并未注册");
@@ -51,6 +50,13 @@ public class ResetPwdController {
 
     @PostMapping("/resetPwd")
     public R resetPwd(@RequestBody ResetPwdParams params) {
+        try {
+            RemoteUserDTO user = userServiceFeign.getUserByPhone(params.getPhone());
+            params.setUserId(user.getUserId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return R.toAjax(this.service.resetPwd(params));
     }
 

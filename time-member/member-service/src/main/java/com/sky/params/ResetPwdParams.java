@@ -11,6 +11,9 @@ import lombok.Data;
 @Data
 public class ResetPwdParams {
 
+    @ApiModelProperty("用户Id")
+    private Long userId;
+
     @ApiModelProperty("手机号")
     private String phone;
 

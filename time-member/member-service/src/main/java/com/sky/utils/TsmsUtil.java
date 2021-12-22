@@ -36,6 +36,13 @@ public class TsmsUtil {
     private LogSmsInfoService smsInfoService;
 
     public String sendSMS(String phone, boolean flag) {
+
+        // 限制两分钟内不能重复发给同一个人
+        if (null != redisTemplate.opsForValue().get(Constants.REDIS_KEY_REGISTER_SMS_KEY + phone)
+                || null != redisTemplate.opsForValue().get(Constants.REDIS_KEY_RESETPWD_SMS_KEY + phone)) {
+            return "不允许重复发送短信";
+        }
+
         String reStr = ""; // 定义返回值
         String smsSign = "TimingWheel";
         String code = RandomUtil.randomNumbers(4);
@@ -82,9 +89,12 @@ public class TsmsUtil {
             this.smsInfoService.insertSms(sysSmsLog);
 
             // 将验证码存入 redis 中，设置过期时间 2分钟
-            redisTemplate.opsForValue().set(Constants.REDIS_KEY_SMS_CODE_KEY + phone, code,
-                    Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
-
+            if (flag)
+                redisTemplate.opsForValue().set(Constants.REDIS_KEY_REGISTER_SMS_KEY + phone, code,
+                        Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
+            else
+                redisTemplate.opsForValue().set(Constants.REDIS_KEY_RESETPWD_SMS_KEY + phone, code,
+                        Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
         } catch (Exception e) {
             e.printStackTrace();
         }

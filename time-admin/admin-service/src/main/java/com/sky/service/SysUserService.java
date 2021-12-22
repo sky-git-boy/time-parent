@@ -2,6 +2,7 @@ package com.sky.service;
 
 import com.sky.domain.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sky.dto.RemoteUserDTO;
 import com.sky.dto.UserDTO;
 import com.sky.vo.DataGridView;
 
@@ -50,4 +51,13 @@ public interface SysUserService extends IService<SysUser> {
      */
     List<SysUser> selectAllUser();
 
+    /**
+     * 前台用户修改密码
+     */
+    int changePwd(RemoteUserDTO dto);
+
+    /**
+     * 前台用户注册
+     */
+    int register(RemoteUserDTO dto);
 }

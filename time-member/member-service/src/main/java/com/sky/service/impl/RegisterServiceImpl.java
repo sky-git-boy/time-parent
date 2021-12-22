@@ -22,7 +22,7 @@ public class RegisterServiceImpl implements RegisterService {
     public int register(RegisterParams params) {
 
         // 从 redis 中获取验证码
-        String yzm = redisTemplate.opsForValue().get(Constants.REDIS_KEY_SMS_CODE_KEY + params.getPhone());
+        String yzm = redisTemplate.opsForValue().get(Constants.REDIS_KEY_REGISTER_SMS_KEY + params.getPhone());
 
         if (null == yzm || !yzm.equals(params.getYzm())) {
             // 如果验证码为空或验证码不相等

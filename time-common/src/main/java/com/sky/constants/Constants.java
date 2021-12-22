@@ -64,9 +64,14 @@ public interface Constants {
     /************************************* REDIS KEY ************************************/
 
     /**
-     * 短信验证码redis存储Key
+     * 注册验证码redis存储Key
      */
-    String REDIS_KEY_SMS_CODE_KEY = "SMSCODE:";
+    String REDIS_KEY_REGISTER_SMS_KEY = "RegisterSMS:";
+
+    /**
+     * 重置密码验证码redis存储Key
+     */
+    String REDIS_KEY_RESETPWD_SMS_KEY = "ResetPwdSMS:";
 
     /**
      * 最大缓存数据量
@@ -142,4 +147,9 @@ public interface Constants {
     String TASK_STATUS_DOING = "1"; // 进行中
     String TASK_STATUS_DONE = "2";  // 已办
     String TASK_STATUS_EXPIRE = "3";// 过期
+
+    /**
+     * 用户默认头像
+     */
+    String DEFAULT_PICTURE = "https://garbage-sorting.oss-cn-shenzhen.aliyuncs.com/2021/09/23/c8eaabf188a648a69fc73c9c09c905a4!400x400.jpg";
 }
