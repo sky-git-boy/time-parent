@@ -3,6 +3,8 @@ package com.sky.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author sky
  * @create 2021-12-21 10:36
@@ -17,5 +19,5 @@ public class OperLogDTO {
     private String businessType;
 
     @ApiModelProperty("操作时间")
-    private String operTime;
+    private Date operTime;
 }

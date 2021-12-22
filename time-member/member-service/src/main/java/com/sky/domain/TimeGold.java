@@ -36,9 +36,9 @@ public class TimeGold extends BaseEntity {
     /**
      * 目标内容
      */
-    @TableField(value = "description")
-    @ApiModelProperty(value = "目标内容")
-    private String description;
+    @TableField(value = "data_json")
+    @ApiModelProperty(value = "目标内容json格式")
+    private String dataJson;
 
     /**
      * 用户ID
@@ -48,35 +48,16 @@ public class TimeGold extends BaseEntity {
     private Long userId;
 
     /**
-     * 状态（0 todo 1 doing 2 done）
-     */
-    @TableField(value = "status")
-    @ApiModelProperty(value = "状态（0 todo 1 doing 2 done）")
-    private String status;
-
-    /**
      * 开始时间
      */
-    @TableField(value = "start_time")
-    @ApiModelProperty(value = "开始时间")
-    private Date startTime;
-
-    /**
-     * 结束时间
-     */
-    @TableField(value = "end_time")
-    @ApiModelProperty(value = "结束时间")
-    private Date endTime;
+    @TableField(value = "create_time")
+    @ApiModelProperty(value = "创建时间")
+    private Date createTime;
 
     public static final String COL_GOLD_ID = "gold_id";
 
-    public static final String COL_DESCRIPTION = "description";
-
     public static final String COL_USER_ID = "user_id";
 
-    public static final String COL_STATUS = "status";
+    public static final String COL_CREATE_TIME = "create_time";
 
-    public static final String COL_START_TIME = "start_time";
-
-    public static final String COL_END_TIME = "end_time";
 }

@@ -1,17 +1,15 @@
 package com.sky.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sky.domain.TimeGold;
 import com.sky.dto.TimeGoldDTO;
 import com.sky.mapper.TimeGoldMapper;
 import com.sky.service.TimeGoldService;
-import com.sky.utils.IdGeneratorSnowflake;
-import com.sky.vo.DataGridView;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @author sky
@@ -24,37 +22,29 @@ public class TimeGoldServiceImpl implements TimeGoldService {
     private TimeGoldMapper mapper;
 
     @Override
-    public DataGridView list(TimeGoldDTO dto) {
-        Page<TimeGold> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        QueryWrapper<TimeGold> qw = new QueryWrapper<>();
-        qw.eq(StringUtils.isNotEmpty(dto.getStatus()), TimeGold.COL_STATUS, dto.getStatus());
-        qw.eq(TimeGold.COL_USER_ID, dto.getSimpleUser().getUserId());
-        this.mapper.selectPage(page, qw);
-        return new DataGridView(page.getTotal(), page.getRecords());
+    public TimeGold getOne(Long userId) {
+        return this.mapper.selectOne(
+                new LambdaQueryWrapper<TimeGold>()
+                        .eq(TimeGold::getUserId, userId)
+        );
     }
 
     @Override
-    public int saveOrUpdate(TimeGoldDTO dto, Long userId) {
+    public int update(TimeGoldDTO dto) {
+        TimeGold bean = new TimeGold();
+        bean.setGoldId(dto.getGoldId());
+        bean.setDataJson(dto.getDataJson());
+        return this.mapper.updateById(bean);
+    }
+
+    @Override
+    public int insert(TimeGoldDTO dto) {
         TimeGold bean = new TimeGold();
         BeanUtils.copyProperties(dto, bean);
-        int flag;
-        if (null == bean.getGoldId()) { // 新增
-            bean.setGoldId(IdGeneratorSnowflake.snowflakeId());
-            bean.setUserId(userId);
-            flag = this.mapper.insert(bean);
-        } else { // 修改
-            flag = this.mapper.updateById(bean);
-        }
-        return flag;
+        bean.setCreateTime(new Date());
+        bean.setUserId(dto.getSimpleUser().getUserId());
+        return this.mapper.updateById(bean);
     }
 
-    @Override
-    public int delete(Long id) {
-        return this.mapper.deleteById(id);
-    }
 
-    @Override
-    public TimeGold getOne(Long id) {
-        return this.mapper.selectById(id);
-    }
 }

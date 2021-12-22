@@ -1,8 +1,8 @@
 package com.sky.service;
 
+
 import com.sky.domain.TimeGold;
 import com.sky.dto.TimeGoldDTO;
-import com.sky.vo.DataGridView;
 
 /**
  * @author sky
@@ -10,11 +10,9 @@ import com.sky.vo.DataGridView;
  */
 public interface TimeGoldService {
 
-    DataGridView list(TimeGoldDTO dto);
+    TimeGold getOne(Long userId);
 
-    int saveOrUpdate(TimeGoldDTO dto, Long userId);
+    int update(TimeGoldDTO dto);
 
-    int delete(Long id);
-
-    TimeGold getOne(Long id);
+    int insert(TimeGoldDTO dto);
 }
