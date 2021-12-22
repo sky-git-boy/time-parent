@@ -37,7 +37,7 @@ public class TsmsUtil {
 
     public String sendSMS(String phone, boolean flag) {
         String reStr = ""; // 定义返回值
-        String smsSign = "垃圾分类sky";
+        String smsSign = "TimingWheel";
         String code = RandomUtil.randomNumbers(4);
         try {
             // 参数，一定要对应短信模板中的参数顺序和个数，
