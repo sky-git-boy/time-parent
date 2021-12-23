@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: statistic-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: time-server:8848
+      config:
+        file-extension: yaml
+#      去 nacos-server 里面拉取 member-service-dev.yaml

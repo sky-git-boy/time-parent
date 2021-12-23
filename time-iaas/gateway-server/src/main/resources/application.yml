@@ -26,6 +26,12 @@ spring:
             - Path=/member/**
           filters:
             - StripPrefix=1 # 当前端访问 /member/login -> login 将 member 自动的去掉
+        - id: statistic-service_router
+          uri: lb://statistic-service   # 转发到那个目的地
+          predicates:
+            - Path=/statistic/**
+          filters:
+            - StripPrefix=1 # 当前端访问 /member/login -> login 将 member 自动的去掉
 
   redis:
     host: time-server
