@@ -46,4 +46,10 @@ public class AdminStatController {
         return R.success(adminStatService.systemChart());
     }
 
+    @GetMapping("/barChart")
+    @ApiOperation("近七日操作数")
+    public R barChart() {
+        return R.success(adminStatService.barChart());
+    }
+
 }

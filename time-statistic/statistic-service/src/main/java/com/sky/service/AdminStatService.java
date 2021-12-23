@@ -16,4 +16,6 @@ public interface AdminStatService {
     AllCountDTO pieChart();
 
     AllCountDTO systemChart();
+
+    LineChartDTO barChart();
 }

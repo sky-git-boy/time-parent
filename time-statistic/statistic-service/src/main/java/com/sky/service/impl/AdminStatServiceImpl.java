@@ -31,7 +31,6 @@ public class AdminStatServiceImpl implements AdminStatService {
         String[] days = dto.getDays();
         int[] loginCount = dto.getLoginCount();
         int[] smsCount = dto.getSmsCount();
-        int[] operCount = dto.getOperCount();
         logOperInfoService.getDataDays().forEach(s -> {
             for (int i=0; i<days.length; i++) {
                 if (days[i].equals(s.getDays())) {
@@ -40,14 +39,7 @@ public class AdminStatServiceImpl implements AdminStatService {
                 }
             }
         });
-        logOperInfoService.getOperDataDays().forEach(s -> {
-            for (int i=0; i<days.length; i++) {
-                if (days[i].equals(s.getDays())) {
-                    operCount[i] = s.getCount();
-                    break;
-                }
-            }
-        });
+
         logSmsInfoService.getDataDays().forEach(s -> {
             for (int i=0; i<days.length; i++) {
                 if (days[i].equals(s.getDays())) {
@@ -87,6 +79,22 @@ public class AdminStatServiceImpl implements AdminStatService {
         dto.setMusicCount(logSmsInfoMapper.getMusicCount());
         dto.setUserCount(logSmsInfoMapper.getUserCount());
         dto.setSlideCount(logSmsInfoMapper.getSlideCount());
+        return dto;
+    }
+
+    @Override
+    public LineChartDTO barChart() {
+        LineChartDTO dto = new LineChartDTO();
+        String[] days = dto.getDays();
+        int[] operCount = dto.getOperCount();
+        logOperInfoService.getOperDataDays().forEach(s -> {
+            for (int i=0; i<days.length; i++) {
+                if (days[i].equals(s.getDays())) {
+                    operCount[i] = s.getCount();
+                    break;
+                }
+            }
+        });
         return dto;
     }
 }
