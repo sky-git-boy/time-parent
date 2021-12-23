@@ -29,4 +29,6 @@ public interface LogOperInfoService extends IService<LogOperInfo> {
     // 获取七日用户登录趋势
     List<DataDTO> getDataDays();
 
+    // 获取登录总数
+    Long getLoginCount();
 }

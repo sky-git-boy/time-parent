@@ -61,4 +61,9 @@ public class LogSmsInfoServiceImpl implements LogSmsInfoService {
     public List<DataDTO> getDataDays() {
         return this.smsInfoMapper.getDataDays();
     }
+
+    @Override
+    public Long getSmsCount() {
+        return this.smsInfoMapper.getSmsCount();
+    }
 }

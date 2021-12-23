@@ -27,4 +27,7 @@ public interface LogSmsInfoService {
 
     // 获取七日发送消息趋势
     List<DataDTO> getDataDays();
+
+    // 获取发送消息总数
+    Long getSmsCount();
 }

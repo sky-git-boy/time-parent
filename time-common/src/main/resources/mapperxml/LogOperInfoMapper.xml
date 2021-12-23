@@ -43,4 +43,13 @@
     GROUP BY
         days;
     </select>
+    <select id="getLoginCount" resultType="java.lang.Long">
+        SELECT
+            count( 1 )
+        FROM
+            log_oper_info
+        WHERE
+            business_type = 4
+            AND `status` = 0
+    </select>
 </mapper>

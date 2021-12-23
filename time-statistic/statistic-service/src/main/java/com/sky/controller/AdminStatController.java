@@ -1,6 +1,5 @@
 package com.sky.controller;
 
-import com.sky.dto.LineChartDTO;
 import com.sky.service.AdminStatService;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * 后台系统统计模块控制器
@@ -31,4 +28,9 @@ public class AdminStatController {
         return R.success(adminStatService.lineChart());
     }
 
+    @GetMapping("/getAllCount")
+    @ApiOperation("各内容总数")
+    public R getAllCount() {
+        return R.success(adminStatService.getAllCount());
+    }
 }

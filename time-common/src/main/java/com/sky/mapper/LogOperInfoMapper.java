@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface LogOperInfoMapper extends BaseMapper<LogOperInfo> {
     List<DataDTO> getDataDays();
+
+    Long getLoginCount();
 }

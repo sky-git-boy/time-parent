@@ -64,4 +64,9 @@ public class LogOperInfoServiceImpl extends ServiceImpl<LogOperInfoMapper, LogOp
     public List<DataDTO> getDataDays() {
         return this.operInfoMapper.getDataDays();
     }
+
+    @Override
+    public Long getLoginCount() {
+        return this.operInfoMapper.getLoginCount();
+    }
 }

@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.dto.AllCountDTO;
 import com.sky.dto.LineChartDTO;
 
 /**
@@ -9,4 +10,6 @@ import com.sky.dto.LineChartDTO;
 public interface AdminStatService {
 
     LineChartDTO lineChart();
+
+    AllCountDTO getAllCount();
 }
