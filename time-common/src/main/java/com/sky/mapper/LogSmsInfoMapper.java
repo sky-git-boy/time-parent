@@ -28,4 +28,6 @@ public interface LogSmsInfoMapper extends BaseMapper<LogSmsInfo> {
     int getNoticeCount();
 
     int getUserCount();
+
+    int getOperCount();
 }

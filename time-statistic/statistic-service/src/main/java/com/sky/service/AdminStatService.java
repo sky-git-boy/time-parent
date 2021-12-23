@@ -12,4 +12,8 @@ public interface AdminStatService {
     LineChartDTO lineChart();
 
     AllCountDTO getAllCount();
+
+    AllCountDTO pieChart();
+
+    AllCountDTO systemChart();
 }

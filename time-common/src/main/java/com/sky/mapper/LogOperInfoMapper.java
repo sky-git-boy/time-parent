@@ -14,4 +14,6 @@ public interface LogOperInfoMapper extends BaseMapper<LogOperInfo> {
     List<DataDTO> getDataDays();
 
     int getLoginCount();
+
+    List<DataDTO> getOperDataDays();
 }

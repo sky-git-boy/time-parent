@@ -52,4 +52,21 @@
             business_type = 4
             AND `status` = 0
     </select>
+    <select id="getOperDataDays" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( oper_time, '%m-%d' ) days,
+        count(*) count
+    FROM
+        (
+        SELECT
+            *
+        FROM
+            log_oper_info
+        WHERE
+            DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( oper_time )
+            AND operator_type = '2'
+        ) AS login
+    GROUP BY
+        days;
+    </select>
 </mapper>

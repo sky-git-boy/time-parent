@@ -31,10 +31,19 @@ public class AdminStatServiceImpl implements AdminStatService {
         String[] days = dto.getDays();
         int[] loginCount = dto.getLoginCount();
         int[] smsCount = dto.getSmsCount();
+        int[] operCount = dto.getOperCount();
         logOperInfoService.getDataDays().forEach(s -> {
             for (int i=0; i<days.length; i++) {
                 if (days[i].equals(s.getDays())) {
                     loginCount[i] = s.getCount();
+                    break;
+                }
+            }
+        });
+        logOperInfoService.getOperDataDays().forEach(s -> {
+            for (int i=0; i<days.length; i++) {
+                if (days[i].equals(s.getDays())) {
+                    operCount[i] = s.getCount();
                     break;
                 }
             }
@@ -57,9 +66,23 @@ public class AdminStatServiceImpl implements AdminStatService {
         int smsCount = logSmsInfoService.getSmsCount();
         dto.setUserLoginCount(loginCount);
         dto.setSmsCount(smsCount);
+        dto.setUserCount(logSmsInfoMapper.getUserCount());
+        dto.setOperCount(logSmsInfoMapper.getOperCount());
+        return dto;
+    }
+
+    @Override
+    public AllCountDTO pieChart() {
+        AllCountDTO dto = new AllCountDTO();
         dto.setTaskCount(logSmsInfoMapper.getTaskCount());
         dto.setEvenCount(logSmsInfoMapper.getEventCount());
         dto.setJournalCount(logSmsInfoMapper.getJournalCount());
+        return dto;
+    }
+
+    @Override
+    public AllCountDTO systemChart() {
+        AllCountDTO dto = new AllCountDTO();
         dto.setNoticeCount(logSmsInfoMapper.getNoticeCount());
         dto.setMusicCount(logSmsInfoMapper.getMusicCount());
         dto.setUserCount(logSmsInfoMapper.getUserCount());

@@ -16,6 +16,9 @@ public class AllCountDTO {
     // 消息发送总数
     private int smsCount;
 
+    // 总操作数
+    private int operCount;
+
     // 任务总数
     private int taskCount;
 
@@ -41,6 +44,7 @@ public class AllCountDTO {
         this.userLoginCount = 0;
         this.smsCount = 0;
         this.taskCount = 0;
+        this.operCount = 0;
         this.userCount = 0;
         this.journalCount = 0;
         this.evenCount = 0;

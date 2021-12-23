@@ -16,9 +16,12 @@ public class LineChartDTO {
 
     private int[] smsCount;
 
+    private int[] operCount;
+
     public LineChartDTO() {
         this.days = TimeUtils.getDays();
         this.loginCount = new int[]{0,0,0,0,0,0,0};
         this.smsCount = new int[]{0,0,0,0,0,0,0};
+        this.operCount = new int[]{0,0,0,0,0,0,0};
     }
 }

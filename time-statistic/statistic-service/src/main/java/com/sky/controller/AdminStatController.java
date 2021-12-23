@@ -33,4 +33,17 @@ public class AdminStatController {
     public R getAllCount() {
         return R.success(adminStatService.getAllCount());
     }
+
+    @GetMapping("/pieChart")
+    @ApiOperation("各内容总数")
+    public R pieChart() {
+        return R.success(adminStatService.pieChart());
+    }
+
+    @GetMapping("/systemChart")
+    @ApiOperation("各内容总数")
+    public R systemChart() {
+        return R.success(adminStatService.systemChart());
+    }
+
 }
