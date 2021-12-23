@@ -69,4 +69,42 @@
     GROUP BY
         days;
     </select>
+    <select id="getPieChartDTO" resultType="com.sky.dto.DataDTO">
+        SELECT
+            `status` days,
+            count( 1 ) count
+        FROM
+            time_task
+        WHERE
+            user_id = #{userId}
+        GROUP BY
+            `status`
+    </select>
+    <select id="columnChart" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( end_time, '%m-%d' ) days,
+        count(*) count
+    FROM
+        ( SELECT * FROM time_task WHERE DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( end_time ) AND user_id = #{userId} ) AS task
+    GROUP BY
+        days;
+    </select>
+    <select id="lineChartSimple" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( done_time, '%m-%d' ) days,
+        count(*) count
+    FROM
+        (
+        SELECT
+            *
+        FROM
+            time_task
+        WHERE
+            DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( done_time )
+            AND user_id = #{userId}
+            AND `status` = 2
+        ) AS task
+    GROUP BY
+        days;
+    </select>
 </mapper>

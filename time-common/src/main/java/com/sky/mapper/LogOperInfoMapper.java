@@ -16,4 +16,13 @@ public interface LogOperInfoMapper extends BaseMapper<LogOperInfo> {
     int getLoginCount();
 
     List<DataDTO> getOperDataDays();
+
+    // 获取任务各状态总数
+    List<DataDTO> getPieChartDTO(Long userId);
+
+    // 近七日任务数
+    List<DataDTO> columnChart(Long userId);
+
+    // 近七日完成趋势
+    List<DataDTO> lineChartSimple(Long userId);
 }
