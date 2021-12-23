@@ -25,4 +25,22 @@
         oper_id, title, business_type, `method`, request_method, operator_type, oper_by,
         oper_url, oper_ip, oper_location, oper_param, json_result, `status`, error_msg, oper_time
     </sql>
+    <select id="getDataDays" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( oper_time, '%m-%d' ) days,
+        count(*) count
+    FROM
+        (
+        SELECT
+            *
+        FROM
+            log_oper_info
+        WHERE
+            DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( oper_time )
+            AND business_type = '4'
+            AND `status` = '0'
+        ) AS login
+    GROUP BY
+        days;
+    </select>
 </mapper>

@@ -2,6 +2,7 @@ package com.sky.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sky.dto.DataDTO;
 import com.sky.dto.LogOperInfoDTO;
 import com.sky.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
@@ -57,5 +58,10 @@ public class LogOperInfoServiceImpl extends ServiceImpl<LogOperInfoMapper, LogOp
     @Override
     public int insertOperLog(LogOperInfo operLog) {
         return this.operInfoMapper.insert(operLog);
+    }
+
+    @Override
+    public List<DataDTO> getDataDays() {
+        return this.operInfoMapper.getDataDays();
     }
 }

@@ -16,4 +16,21 @@
         <!--@mbg.generated-->
         id, mobile, create_time, code, `status`, `type`, error_info
     </sql>
+    <select id="getDataDays" resultType="com.sky.dto.DataDTO">
+        SELECT
+            DATE_FORMAT( create_time, '%m-%d' ) days,
+            count(*) count
+        FROM
+            (
+            SELECT
+                *
+            FROM
+                log_sms_info
+            WHERE
+                DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( create_time )
+                AND `status` = '0'
+            ) AS login
+        GROUP BY
+            days;
+    </select>
 </mapper>

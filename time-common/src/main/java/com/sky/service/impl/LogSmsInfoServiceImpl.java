@@ -3,6 +3,7 @@ package com.sky.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sky.domain.LogSmsInfo;
+import com.sky.dto.DataDTO;
 import com.sky.dto.LogSmsInfoDTO;
 import com.sky.mapper.LogSmsInfoMapper;
 import com.sky.service.LogSmsInfoService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author sky
@@ -53,5 +55,10 @@ public class LogSmsInfoServiceImpl implements LogSmsInfoService {
     @Override
     public int insertSms(LogSmsInfo smsInfo) {
         return this.smsInfoMapper.insert(smsInfo);
+    }
+
+    @Override
+    public List<DataDTO> getDataDays() {
+        return this.smsInfoMapper.getDataDays();
     }
 }

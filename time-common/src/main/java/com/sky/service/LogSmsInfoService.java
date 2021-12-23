@@ -1,8 +1,11 @@
 package com.sky.service;
 
 import com.sky.domain.LogSmsInfo;
+import com.sky.dto.DataDTO;
 import com.sky.dto.LogSmsInfoDTO;
 import com.sky.vo.DataGridView;
+
+import java.util.List;
 
 /**
  * @author sky
@@ -21,4 +24,7 @@ public interface LogSmsInfoService {
 
     // 添加
     int insertSms(LogSmsInfo smsInfo);
+
+    // 获取七日发送消息趋势
+    List<DataDTO> getDataDays();
 }
