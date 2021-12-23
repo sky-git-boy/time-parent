@@ -1,10 +1,7 @@
 package com.sky.service.impl;
 
 import com.sky.domain.SimpleUser;
-import com.sky.dto.ColumnChartDTO;
-import com.sky.dto.DataDTO;
-import com.sky.dto.LineChartSimpleDTO;
-import com.sky.dto.PieChartDTO;
+import com.sky.dto.*;
 import com.sky.exception.BusinessException;
 import com.sky.mapper.LogOperInfoMapper;
 import com.sky.service.MemberStatService;
@@ -70,6 +67,46 @@ public class MemberStatServiceImpl implements MemberStatService {
             for (int i=0; i<days.length; i++) {
                 if (days[i].equals(s.getDays())) {
                     count[i] = s.getCount();
+                    break;
+                }
+            }
+        });
+        return dto;
+    }
+
+    @Override
+    public MixedChartDTO mixChart() {
+        SimpleUser user = SecurityUtils.getUser();
+        if (null == user.getUserId()) {
+            throw new BusinessException("获取用户信息失败");
+        }
+        Long userId = user.getUserId();
+
+        MixedChartDTO dto = new MixedChartDTO();
+        String[] months = dto.getMonths();
+        int[] taskCountM = dto.getTaskCountM();
+        int[] eventCountM = dto.getEventCountM();
+        int[] journalCountM = dto.getJournalCountM();
+        this.mapper.getTaskCountEachMonth(userId).forEach(s -> {
+            for (int i=0; i<months.length; i++) {
+                if (months[i].equals(s.getDays())) {
+                    taskCountM[i] = s.getCount();
+                    break;
+                }
+            }
+        });
+        this.mapper.getEventCountEachMonth(userId).forEach(s -> {
+            for (int i=0; i<months.length; i++) {
+                if (months[i].equals(s.getDays())) {
+                    eventCountM[i] = s.getCount();
+                    break;
+                }
+            }
+        });
+        this.mapper.getJournalCountEachMonth(userId).forEach(s -> {
+            for (int i=0; i<months.length; i++) {
+                if (months[i].equals(s.getDays())) {
+                    journalCountM[i] = s.getCount();
                     break;
                 }
             }

@@ -25,4 +25,13 @@ public interface LogOperInfoMapper extends BaseMapper<LogOperInfo> {
 
     // 近七日完成趋势
     List<DataDTO> lineChartSimple(Long userId);
+
+    // 获取今年每月的任务数
+    List<DataDTO> getTaskCountEachMonth(Long userId);
+
+    // 获取今年每月的自省数
+    List<DataDTO> getJournalCountEachMonth(Long userId);
+
+    // 获取今年每月的事件数
+    List<DataDTO> getEventCountEachMonth(Long userId);
 }

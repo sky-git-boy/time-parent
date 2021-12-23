@@ -2,6 +2,7 @@ package com.sky.service;
 
 import com.sky.dto.ColumnChartDTO;
 import com.sky.dto.LineChartSimpleDTO;
+import com.sky.dto.MixedChartDTO;
 import com.sky.dto.PieChartDTO;
 
 /**
@@ -15,4 +16,6 @@ public interface MemberStatService {
     LineChartSimpleDTO lineChartSimple();
 
     ColumnChartDTO columnChart();
+
+    MixedChartDTO mixChart();
 }

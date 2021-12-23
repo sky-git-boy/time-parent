@@ -11,9 +11,22 @@ import java.util.*;
 public class TimeUtils {
     // 获取仅七天日期（MM-dd）
     public static String[] getDays() {
-        String[] daysBetween = (String[]) getDaysBetween(6);
-        System.out.println(Arrays.toString(daysBetween));
-        return daysBetween;
+        return (String[]) getDaysBetween(6);
+    }
+
+    // 获取今年所有月份（yyyy/MM）
+    public static String[] getMonths() {
+        Calendar cal = Calendar.getInstance();
+        String year = cal.get(Calendar.YEAR) + "";
+        String[] res = new String[12];
+        for (int i=0; i<12; i++) {
+            if (i < 10) {
+                res[i] = year + "/0" + (i+1);
+            }else {
+                res[i] = year + "/" + (i+1);
+            }
+        }
+        return res;
     }
 
     private static Date getDateAdd(int days) {
@@ -39,9 +52,5 @@ public class TimeUtils {
             time += oneDay;
         }
         return dayss.toArray(new String[dayss.size()]);
-    }
-
-    public static void main(String[] args) {
-        getDays();
     }
 }

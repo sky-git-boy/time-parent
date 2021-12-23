@@ -24,7 +24,7 @@ public class MemberStatController {
     @GetMapping("/mixedChart")
     @ApiOperation("各类创建数")
     public R mixedChart() {
-        return R.success();
+        return R.success(memberStatService.mixChart());
     }
 
     @GetMapping("/lineChartSimple")

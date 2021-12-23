@@ -107,4 +107,55 @@
     GROUP BY
         days;
     </select>
+    <select id="getTaskCountEachMonth" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( end_time, '%Y/%m' ) days,
+        count(*) count
+    FROM
+        (
+            SELECT
+                *
+            FROM
+                time_task
+            WHERE
+                concat(year(now()),'-01-01') &lt;= date( end_time )
+            AND user_id = #{userId}
+        ) AS task
+    GROUP BY
+        days;
+    </select>
+    <select id="getJournalCountEachMonth" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( create_time, '%Y/%m' ) days,
+        count(*) count
+    FROM
+        (
+            SELECT
+                *
+            FROM
+                time_journal
+            WHERE
+                concat(year(now()),'-01-01') &lt;= date( create_time )
+            AND user_id = 3
+        ) AS task
+    GROUP BY
+        days;
+    </select>
+    <select id="getEventCountEachMonth" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( start_date, '%Y/%m' ) days,
+        count(*) count
+    FROM
+        (
+            SELECT
+                *
+            FROM
+                time_event
+            WHERE
+                concat(year(now()),'-01-01') &lt;= date( start_date )
+            AND user_id = #{userId}
+        ) AS task
+    GROUP BY
+        days;
+    </select>
 </mapper>
