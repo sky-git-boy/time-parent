@@ -43,7 +43,7 @@
     GROUP BY
         days;
     </select>
-    <select id="getLoginCount" resultType="java.lang.Long">
+    <select id="getLoginCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM

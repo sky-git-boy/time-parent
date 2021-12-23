@@ -11,41 +11,41 @@ import lombok.Data;
 public class AllCountDTO {
 
     // 用户登录总数
-    private Long userLoginCount;
+    private int userLoginCount;
 
     // 消息发送总数
-    private Long smsCount;
+    private int smsCount;
 
     // 任务总数
-    private Long taskCount;
+    private int taskCount;
 
     // 用户总数
-    private Long userCount;
+    private int userCount;
 
     // 自省总数
-    private Long journalCount;
+    private int journalCount;
 
     // 事件总数
-    private Long evenCount;
+    private int evenCount;
 
     // 白噪音总数
-    private Long musicCount;
+    private int musicCount;
 
     // 公告总数
-    private Long noticeCount;
+    private int noticeCount;
 
     // 轮播图数量
-    private Long slideCount;
+    private int slideCount;
 
     public AllCountDTO() {
-        this.userLoginCount = 0L;
-        this.smsCount = 0L;
-        this.taskCount = 0L;
-        this.userCount = 0L;
-        this.journalCount = 0L;
-        this.evenCount = 0L;
-        this.musicCount = 0L;
-        this.noticeCount = 0L;
-        this.slideCount = 0L;
+        this.userLoginCount = 0;
+        this.smsCount = 0;
+        this.taskCount = 0;
+        this.userCount = 0;
+        this.journalCount = 0;
+        this.evenCount = 0;
+        this.musicCount = 0;
+        this.noticeCount = 0;
+        this.slideCount = 0;
     }
 }

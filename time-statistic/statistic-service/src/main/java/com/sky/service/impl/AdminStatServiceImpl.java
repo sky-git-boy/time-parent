@@ -53,8 +53,8 @@ public class AdminStatServiceImpl implements AdminStatService {
     @Override
     public AllCountDTO getAllCount() {
         AllCountDTO dto = new AllCountDTO();
-        Long loginCount = logOperInfoService.getLoginCount();
-        Long smsCount = logSmsInfoService.getSmsCount();
+        int loginCount = logOperInfoService.getLoginCount();
+        int smsCount = logSmsInfoService.getSmsCount();
         dto.setUserLoginCount(loginCount);
         dto.setSmsCount(smsCount);
         dto.setTaskCount(logSmsInfoMapper.getTaskCount());

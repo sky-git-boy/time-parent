@@ -63,7 +63,7 @@ public class LogSmsInfoServiceImpl implements LogSmsInfoService {
     }
 
     @Override
-    public Long getSmsCount() {
+    public int getSmsCount() {
         return this.smsInfoMapper.getSmsCount();
     }
 }

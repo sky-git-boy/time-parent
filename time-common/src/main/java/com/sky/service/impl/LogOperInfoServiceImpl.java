@@ -66,7 +66,7 @@ public class LogOperInfoServiceImpl extends ServiceImpl<LogOperInfoMapper, LogOp
     }
 
     @Override
-    public Long getLoginCount() {
+    public int getLoginCount() {
         return this.operInfoMapper.getLoginCount();
     }
 }

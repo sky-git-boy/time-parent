@@ -30,5 +30,5 @@ public interface LogOperInfoService extends IService<LogOperInfo> {
     List<DataDTO> getDataDays();
 
     // 获取登录总数
-    Long getLoginCount();
+    int getLoginCount();
 }

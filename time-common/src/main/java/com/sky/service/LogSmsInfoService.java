@@ -29,5 +29,5 @@ public interface LogSmsInfoService {
     List<DataDTO> getDataDays();
 
     // 获取发送消息总数
-    Long getSmsCount();
+    int getSmsCount();
 }

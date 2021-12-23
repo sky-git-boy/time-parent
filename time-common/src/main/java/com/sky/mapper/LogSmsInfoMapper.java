@@ -13,19 +13,19 @@ import java.util.List;
 public interface LogSmsInfoMapper extends BaseMapper<LogSmsInfo> {
     List<DataDTO> getDataDays();
 
-    Long getSmsCount();
+    int getSmsCount();
 
-    Long getTaskCount();
+    int getTaskCount();
 
-    Long getSlideCount();
+    int getSlideCount();
 
-    Long getMusicCount();
+    int getMusicCount();
 
-    Long getJournalCount();
+    int getJournalCount();
 
-    Long getEventCount();
+    int getEventCount();
 
-    Long getNoticeCount();
+    int getNoticeCount();
 
-    Long getUserCount();
+    int getUserCount();
 }

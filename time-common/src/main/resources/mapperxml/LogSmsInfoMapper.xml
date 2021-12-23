@@ -33,7 +33,7 @@
         GROUP BY
             days;
     </select>
-    <select id="getSmsCount" resultType="java.lang.Long">
+    <select id="getSmsCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
@@ -41,43 +41,43 @@
         WHERE
             `status` = '0'
     </select>
-        <select id="getTaskCount" resultType="java.lang.Long">
+        <select id="getTaskCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
             time_task
     </select>
-    <select id="getSlideCount" resultType="java.lang.Long">
+    <select id="getSlideCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
             time_slide
     </select>
-    <select id="getMusicCount" resultType="java.lang.Long">
+    <select id="getMusicCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
             time_music
     </select>
-    <select id="getJournalCount" resultType="java.lang.Long">
+    <select id="getJournalCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
             time_journal
     </select>
-    <select id="getEventCount" resultType="java.lang.Long">
+    <select id="getEventCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
             time_event
     </select>
-    <select id="getNoticeCount" resultType="java.lang.Long">
+    <select id="getNoticeCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
             sys_notice
     </select>
-    <select id="getUserCount" resultType="java.lang.Long">
+    <select id="getUserCount" resultType="java.lang.Integer">
         SELECT
             count( 1 )
         FROM
