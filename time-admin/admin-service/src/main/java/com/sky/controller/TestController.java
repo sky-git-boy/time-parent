@@ -1,6 +1,7 @@
 package com.sky.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.sky.domain.SysUser;
 import com.sky.service.SysUserService;
@@ -27,6 +28,17 @@ public class TestController {
     })
     public R<SysUser> getSysUserInfo(@PathVariable("id") Long id) {
         SysUser sysUser = sysUserService.getById(id);
+        sysUser.setPassword("******");
+        return R.ok(sysUser);
+    }
+
+    @ApiOperation(value = "查询用户详情")
+    @GetMapping("/getUser/{phone}")
+    public R<SysUser> getSysUserInfo(@PathVariable("phone") String phone) {
+        SysUser sysUser = sysUserService.getOne(
+                new LambdaQueryWrapper<SysUser>()
+                        .eq(SysUser::getPhone, phone)
+        );
         sysUser.setPassword("******");
         return R.ok(sysUser);
     }
