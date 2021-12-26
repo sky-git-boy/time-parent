@@ -42,15 +42,17 @@ public class TaskController {
         dto.setSimpleUser(user);
 
         KanBanDTO res = new KanBanDTO();
-        for (int i=0; i<3; i++) {
+        for (int i=0; i<=3; i++) {
             dto.setStatus(i+"");
             List<TimeTask> list = this.service.getTaskList(dto);
             if (i==0)
                 res.setTodo(list);
             else if (i==1)
                 res.setDoing(list);
-            else
+            else if (i==2)
                 res.setDone(list);
+            else
+                res.setExpire(list);
         }
 
         return R.success(res);

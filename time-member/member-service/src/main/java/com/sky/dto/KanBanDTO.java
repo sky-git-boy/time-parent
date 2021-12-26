@@ -29,4 +29,7 @@ public class KanBanDTO {
     @ApiModelProperty("已办")
     private List<TimeTask> done;
 
+    @ApiModelProperty("过期")
+    private List<TimeTask> expire;
+
 }
