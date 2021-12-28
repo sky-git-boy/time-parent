@@ -105,7 +105,7 @@ public class SysDictTypeServiceImpl implements SysDictTypeService {
     }
 
     // 同步缓存
-    private void dictCacheAsync() {
+    public void dictCacheAsync() {
         // 查询所有可用的 dictType
         QueryWrapper<SysDictType> qw = new QueryWrapper<>();
         qw.ge(SysDictType.COL_STATUS, Constants.STATUS_TRUE);

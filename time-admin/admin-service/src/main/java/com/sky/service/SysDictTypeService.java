@@ -46,5 +46,8 @@ public interface SysDictTypeService {
      * 根据 ID 查询一个字典类型
      */
     SysDictType selectDictTypeById(Long dictId);
+
+    // 将数据存到reids中
+    void dictCacheAsync();
     
 }

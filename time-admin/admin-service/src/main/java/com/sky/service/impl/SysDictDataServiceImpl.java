@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sky.constants.Constants;
 import com.sky.dto.DictDataDTO;
+import com.sky.service.SysDictTypeService;
 import com.sky.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -34,6 +35,9 @@ public class SysDictDataServiceImpl implements SysDictDataService {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @Autowired
+    private SysDictTypeService dictTypeService;
 
     @Override
     public DataGridView listPage(DictDataDTO dictDataDto) {
@@ -85,14 +89,20 @@ public class SysDictDataServiceImpl implements SysDictDataService {
     @Override
     public List<SysDictData> selectDictDataByDictType(String dictType) {
         // 从 redis 中查询
-//        String key = Constants.DICT_REDIS_PROFIX + dictType;
-//        ValueOperations<String, String> ops = redisTemplate.opsForValue();
-//        String json = ops.get(key);
-//        return JSON.parseArray(json, SysDictData.class);
+        String key = Constants.DICT_REDIS_PROFIX + dictType;
+        ValueOperations<String, String> ops = redisTemplate.opsForValue();
+        String json = ops.get(key);
+        if (json != null) {
+            return JSON.parseArray(json, SysDictData.class);
+        }
 
+        // 从数据库中查询
         QueryWrapper<SysDictData> qw = new QueryWrapper<>();
         qw.eq(SysDictData.COL_DICT_TYPE, dictType);
         qw.eq(SysDictData.COL_STATUS, Constants.STATUS_TRUE); // 可用的
+
+        // 异步添加字典数据到redis中
+        new Thread(() -> dictTypeService.dictCacheAsync()).start();
         return this.dictDataMapper.selectList(qw);
     }
 }
