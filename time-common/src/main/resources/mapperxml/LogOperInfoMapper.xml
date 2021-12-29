@@ -136,7 +136,7 @@
                 time_journal
             WHERE
                 concat(year(now()),'-01-01') &lt;= date( create_time )
-            AND user_id = 3
+            AND user_id = #{userId}
         ) AS task
     GROUP BY
         days;
