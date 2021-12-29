@@ -1,5 +1,6 @@
 package com.sky.controller;
 
+import com.sky.dto.BaseDTO;
 import com.sky.service.AdminStatService;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
@@ -52,4 +53,21 @@ public class AdminStatController {
         return R.success(adminStatService.barChart());
     }
 
+    @GetMapping("/orderStatusChart")
+    @ApiOperation("订单状态统计")
+    public R orderStatusChart(BaseDTO dto) {
+        return R.success(adminStatService.orderStatusChart(dto));
+    }
+
+    @GetMapping("/orderTypeChart")
+    @ApiOperation("订单类型统计")
+    public R orderTypeChart(BaseDTO dto) {
+        return R.success(adminStatService.orderTypeChart(dto));
+    }
+
+    @GetMapping("/orderCount")
+    @ApiOperation("总收入")
+    public R orderCount(BaseDTO dto) {
+        return R.success(adminStatService.orderCount(dto));
+    }
 }

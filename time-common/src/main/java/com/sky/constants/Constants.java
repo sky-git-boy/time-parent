@@ -170,4 +170,23 @@ public interface Constants {
     String ORDER_STATUS_1 = "1";
     String ORDER_STATUS_2 = "2";
     String ORDER_STATUS_3 = "3";
+
+    /**
+     * 订单状态
+     */
+    String ORDER_STATUS = "order_status";
+
+    /**
+     * 订单类型
+     */
+    String ORDER_TYPE = "order_type";
+
+    /**
+     * 支付单类型状态，0一个月,1半年，2一年 3永久
+     */
+    String ORDER_TYPE_0 = "0";
+    String ORDER_TYPE_1 = "1";
+    String ORDER_TYPE_2 = "2";
+    String ORDER_TYPE_3 = "3";
+
 }

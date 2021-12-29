@@ -91,4 +91,35 @@
         FROM
             log_oper_info
     </select>
+    <select id="getOrderStatCount" resultType="com.sky.dto.DataDTO">
+        SELECT
+            #{flag} days,
+            count( 1 ) count
+        FROM
+            time_order
+        <where>
+            <if test="param1.beginTime != null">
+                create_time >= #{param1.beginTime}
+            </if>
+            <if test="param1.endTime != null">
+                and create_time &lt;= #{param1.endTime}
+            </if>
+        </where>
+        GROUP BY
+            #{flag}
+    </select>
+    <select id="getOrderCount" resultType="int">
+        SELECT
+            SUM( order_amount ) count
+        FROM
+            time_order
+        <where>
+            <if test="beginTime != null">
+                create_time >= #{beginTime}
+            </if>
+            <if test="endTime != null">
+                and create_time &lt;= #{endTime}
+            </if>
+        </where>
+    </select>
 </mapper>

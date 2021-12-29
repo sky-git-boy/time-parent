@@ -2,7 +2,9 @@ package com.sky.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sky.domain.LogSmsInfo;
+import com.sky.dto.BaseDTO;
 import com.sky.dto.DataDTO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,4 +32,10 @@ public interface LogSmsInfoMapper extends BaseMapper<LogSmsInfo> {
     int getUserCount();
 
     int getOperCount();
+
+    // 获取订单状态统计
+    List<DataDTO> getOrderStatCount(BaseDTO dto, @Param("flag") String flag);
+
+    // 总收入
+    int getOrderCount(BaseDTO dto);
 }

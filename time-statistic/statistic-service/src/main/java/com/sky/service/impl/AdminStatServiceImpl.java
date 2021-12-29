@@ -1,13 +1,19 @@
 package com.sky.service.impl;
 
+import com.sky.constants.Constants;
 import com.sky.dto.AllCountDTO;
+import com.sky.dto.BaseDTO;
 import com.sky.dto.LineChartDTO;
+import com.sky.dto.OrderStatDTO;
 import com.sky.mapper.LogSmsInfoMapper;
 import com.sky.service.AdminStatService;
 import com.sky.service.LogOperInfoService;
 import com.sky.service.LogSmsInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author sky
@@ -96,5 +102,62 @@ public class AdminStatServiceImpl implements AdminStatService {
             }
         });
         return dto;
+    }
+
+    @Override
+    public List<OrderStatDTO> orderStatusChart(BaseDTO dto) {
+        List<OrderStatDTO> res = new ArrayList<>();
+        // 获取订单状态统计
+        this.logSmsInfoMapper.getOrderStatCount(dto, Constants.ORDER_STATUS).forEach(s -> {
+            OrderStatDTO statDTO = new OrderStatDTO();
+            statDTO.setValue(s.getCount());
+            switch (s.getDays()) {
+                case Constants.ORDER_STATUS_0:
+                    statDTO.setName("未支付");
+                    break;
+                case Constants.ORDER_STATUS_1:
+                    statDTO.setName("已支付");
+                    break;
+                case Constants.ORDER_STATUS_2:
+                    statDTO.setName("支付超时");
+                    break;
+                case Constants.ORDER_STATUS_3:
+                    statDTO.setName("支付失败");
+                    break;
+            }
+            res.add(statDTO);
+        });
+        return res;
+    }
+
+    @Override
+    public List<OrderStatDTO> orderTypeChart(BaseDTO dto) {
+        List<OrderStatDTO> res = new ArrayList<>();
+        // 获取订单状态统计
+        this.logSmsInfoMapper.getOrderStatCount(dto, Constants.ORDER_TYPE).forEach(s -> {
+            OrderStatDTO statDTO = new OrderStatDTO();
+            statDTO.setValue(s.getCount());
+            switch (s.getDays()) {
+                case Constants.ORDER_TYPE_0:
+                    statDTO.setName("一个月");
+                    break;
+                case Constants.ORDER_TYPE_1:
+                    statDTO.setName("半年");
+                    break;
+                case Constants.ORDER_TYPE_2:
+                    statDTO.setName("一年");
+                    break;
+                case Constants.ORDER_TYPE_3:
+                    statDTO.setName("永久");
+                    break;
+            }
+            res.add(statDTO);
+        });
+        return res;
+    }
+
+    @Override
+    public int orderCount(BaseDTO dto) {
+        return this.logSmsInfoMapper.getOrderCount(dto);
     }
 }
