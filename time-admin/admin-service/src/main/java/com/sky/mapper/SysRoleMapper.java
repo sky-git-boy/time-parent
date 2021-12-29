@@ -35,4 +35,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
 
     // 保存角色和菜单之间的关系
     int saveRoleMenu(@Param("roleId") Long roleId, @Param("menuId") Long menuId, @Param("createBy") Long createBy, @Param("createTime") Date createTime);
+
+    // 删除用户拥有的角色
+    int deleteUserRoleByUserId(Long userId);
 }

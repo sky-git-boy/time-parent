@@ -21,4 +21,7 @@ public interface UserServiceFeign {
 
     @PostMapping("/register")
     int register(@RequestBody RemoteUserDTO dto);
+
+    @PostMapping("/plusUser")
+    int plusUser(@RequestParam Long userId);
 }

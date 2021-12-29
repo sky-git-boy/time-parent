@@ -157,4 +157,17 @@ public interface Constants {
      * 普通会员角色ID
      */
     Long ROLE_USER_ID = 2L;
+
+    /**
+     * 超级会员角色ID
+     */
+    Long ROLE_SUPER_USER_ID = 3L;
+
+    /**
+     * 支付单状态状态，0未支付,1已支付，2支付超时 3支付失败
+     */
+    String ORDER_STATUS_0 = "0";
+    String ORDER_STATUS_1 = "1";
+    String ORDER_STATUS_2 = "2";
+    String ORDER_STATUS_3 = "3";
 }

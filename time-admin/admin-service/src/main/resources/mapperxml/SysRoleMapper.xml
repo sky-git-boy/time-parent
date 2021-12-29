@@ -76,4 +76,10 @@
     <insert id="saveRoleMenu">
         insert into sys_role_menu(role_id, menu_id, create_by, create_time) values (#{roleId},#{menuId}, #{createBy}, #{createTime})
     </insert>
+    <delete id="deleteUserRoleByUserId">
+        delete from sys_user_role
+        <where>
+            user_id = #{userId}
+        </where>
+    </delete>
 </mapper>

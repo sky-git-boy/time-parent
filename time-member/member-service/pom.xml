@@ -52,10 +52,27 @@
             <version>1.0</version>
         </dependency>
 
+        <!--引入短信服务相关的jar包-->
         <dependency>
             <groupId>com.github.qcloudsms</groupId>
             <artifactId>qcloudsms</artifactId>
             <version>1.0.5</version>
+        </dependency>
+
+        <!--引入支付宝相关的jar包-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.3.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-sdk-java-3.3.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>alipay-trade-sdk-java</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-trade-sdk-1.0.jar</systemPath>
         </dependency>
     </dependencies>
 

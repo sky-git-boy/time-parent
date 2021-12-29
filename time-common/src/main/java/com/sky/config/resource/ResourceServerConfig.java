@@ -29,6 +29,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(
                         "/login" ,
                         "/slide/listSlideForPage",
+                        "/pay/callback",
                         "/reset/sendResetMail",
                         "/reset/resetPwd",
                         "/register/sendRegisterMail",

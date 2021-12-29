@@ -156,4 +156,10 @@ public class SysUserController implements UserServiceFeign {
 
         return this.userService.register(dto);
     }
+
+    @Override
+    public int plusUser(Long userId) {
+        // 升级会员为超级会员
+        return this.userService.plusUser(userId);
+    }
 }

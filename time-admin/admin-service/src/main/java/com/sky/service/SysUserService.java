@@ -60,4 +60,9 @@ public interface SysUserService extends IService<SysUser> {
      * 前台用户注册
      */
     int register(RemoteUserDTO dto);
+
+    /**
+     * 会员升级
+     */
+    int plusUser(Long userId);
 }

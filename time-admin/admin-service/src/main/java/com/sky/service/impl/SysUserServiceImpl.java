@@ -155,4 +155,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         }
         return -1;
     }
+
+    @Override
+    @Transactional
+    public int plusUser(Long userId) {
+        // 先删除用户拥有的角色
+        this.roleMapper.deleteUserRoleByUserId(userId);
+
+        // 升级用户
+        return this.roleMapper.saveRoleUser(userId, Constants.ROLE_SUPER_USER_ID, null, new Date());
+    }
 }
