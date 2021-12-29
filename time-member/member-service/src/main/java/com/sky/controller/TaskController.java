@@ -13,6 +13,7 @@ import com.sky.utils.SecurityUtils;
 import com.sky.vo.R;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,7 @@ public class TaskController {
      * todo看板
      */
     @GetMapping("/kanBan")
+    @PreAuthorize("hasAuthority('todo_kanban')")
     public R kanBan(TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -62,6 +64,7 @@ public class TaskController {
      * 任务列表
      */
     @GetMapping("/list")
+    @PreAuthorize("hasAuthority('todo')")
     public R list(TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
@@ -76,6 +79,7 @@ public class TaskController {
      * 修改任务
      */
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('todo')")
     @Log(title = "修改个人任务", businessType = BusinessType.UPDATE, operatorType = OperatorType.MEMBER)
     public R update(@RequestBody TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
@@ -90,6 +94,7 @@ public class TaskController {
      * 添加任务
      */
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('todo')")
     @Log(title = "添加个人任务", businessType = BusinessType.INSERT, operatorType = OperatorType.MEMBER)
     public R add(@RequestBody @Validated TimeTaskDTO dto) {
         SimpleUser user = SecurityUtils.getUser();
@@ -104,6 +109,7 @@ public class TaskController {
      * 删除任务
      */
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('todo')")
     @Log(title = "删除个人任务", businessType = BusinessType.DELETE, operatorType = OperatorType.MEMBER)
     public R delete(@PathVariable("id") Long id) {
         SimpleUser user = SecurityUtils.getUser();
@@ -117,6 +123,7 @@ public class TaskController {
      * 获取详情
      */
     @GetMapping("/getOne/{id}")
+    @PreAuthorize("hasAuthority('todo')")
     public R getOne(@PathVariable("id") Long id) {
         SimpleUser user = SecurityUtils.getUser();
         if (null == user.getUserId()) {
