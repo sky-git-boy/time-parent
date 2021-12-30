@@ -2,6 +2,7 @@ package com.sky.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sky.domain.SysRole;
+import com.sky.dto.SysUserRoleDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -41,4 +42,10 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
 
     // 获取用户角色的过期时间
     Date getUserRoleExpireTime(Long userId);
+
+    // 获取超级用户列表
+    List<SysUserRoleDTO> getUserRoleList();
+
+    // 重置超级用户权限
+    int updatePlusUserRole(@Param("userId") Long userId, @Param("roleId") Long roleId, @Param("expireTime") Date expireTime);
 }

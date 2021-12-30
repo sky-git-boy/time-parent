@@ -25,7 +25,7 @@ public class TaskJobService {
 
     // 每天6点扫描待办
     @Scheduled(cron = "0 0 18 * * ?")
-    public void test() {
+    public void taskJob() {
 
         // 设置待修改待办的列表
         List<TimeTask> updateList = new ArrayList<>();

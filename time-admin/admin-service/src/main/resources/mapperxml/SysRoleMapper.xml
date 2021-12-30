@@ -85,4 +85,10 @@
     <select id="getUserRoleExpireTime" resultType="java.util.Date">
         select expire_time from sys_user_role where user_id = #{userId}
     </select>
+    <select id="getUserRoleList" resultType="com.sky.dto.SysUserRoleDTO">
+        select * from sys_user_role where role_id = 3
+    </select>
+    <update id="updatePlusUserRole">
+        update sys_user_role set role_id = #{roleId}, expire_time = #{expireTime} where user_id = #{userId}
+    </update>
 </mapper>

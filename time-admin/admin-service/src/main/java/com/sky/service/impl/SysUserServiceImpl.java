@@ -162,14 +162,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public int plusUser(Long userId, String orderType) {
         // 获取用户角色的过期时间
         Date roleExpireTime = this.roleMapper.getUserRoleExpireTime(userId);
-        Date now = null; // 当前时间
+        Date now; // 当前时间
         if (roleExpireTime == null)
             now = new Date();
         else
             now = roleExpireTime;
-
-        // 先删除用户拥有的角色
-        this.roleMapper.deleteUserRoleByUserId(userId);
 
         Calendar expireTime = Calendar.getInstance();
         expireTime.setTime(now); // 设置起时间
@@ -189,6 +186,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         }
 
         // 升级用户
-        return this.roleMapper.saveRoleUser(userId, Constants.ROLE_SUPER_USER_ID, null, new Date(), expireTime.getTime());
+        return this.roleMapper.updatePlusUserRole(userId, Constants.ROLE_SUPER_USER_ID, expireTime.getTime());
     }
 }
