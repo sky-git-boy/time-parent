@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.TimeRulesMapper">
+  <resultMap id="BaseResultMap" type="com.sky.domain.TimeRules">
+    <!--@mbg.generated-->
+    <!--@Table time_rules-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="need_count" jdbcType="VARCHAR" property="needCount" />
+    <result column="reward_content" jdbcType="VARCHAR" property="rewardContent" />
+    <result column="punishment_content" jdbcType="VARCHAR" property="punishmentContent" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, need_count, reward_content, punishment_content, create_time, `status`
+  </sql>
+</mapper>
