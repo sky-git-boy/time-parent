@@ -9,10 +9,15 @@ import com.sky.mapper.LogSmsInfoMapper;
 import com.sky.service.AdminStatService;
 import com.sky.service.LogOperInfoService;
 import com.sky.service.LogSmsInfoService;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -106,9 +111,12 @@ public class AdminStatServiceImpl implements AdminStatService {
 
     @Override
     public List<OrderStatDTO> orderStatusChart(BaseDTO dto) {
+        // 时间格式化
+        formatDate(dto);
+
         List<OrderStatDTO> res = new ArrayList<>();
         // 获取订单状态统计
-        this.logSmsInfoMapper.getOrderStatCount(dto, Constants.ORDER_STATUS).forEach(s -> {
+        this.logSmsInfoMapper.getOrderStatusCount(dto).forEach(s -> {
             OrderStatDTO statDTO = new OrderStatDTO();
             statDTO.setValue(s.getCount());
             switch (s.getDays()) {
@@ -132,10 +140,14 @@ public class AdminStatServiceImpl implements AdminStatService {
 
     @Override
     public List<OrderStatDTO> orderTypeChart(BaseDTO dto) {
+        // 时间格式化
+        formatDate(dto);
+
         List<OrderStatDTO> res = new ArrayList<>();
         // 获取订单状态统计
-        this.logSmsInfoMapper.getOrderStatCount(dto, Constants.ORDER_TYPE).forEach(s -> {
+        this.logSmsInfoMapper.getOrderTypeCount(dto).forEach(s -> {
             OrderStatDTO statDTO = new OrderStatDTO();
+            System.out.println(s);
             statDTO.setValue(s.getCount());
             switch (s.getDays()) {
                 case Constants.ORDER_TYPE_0:
@@ -158,6 +170,39 @@ public class AdminStatServiceImpl implements AdminStatService {
 
     @Override
     public int orderCount(BaseDTO dto) {
+        // 时间格式化
+        formatDate(dto);
+
         return this.logSmsInfoMapper.getOrderCount(dto);
+    }
+
+    private void formatDate(BaseDTO dto) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date beginTime = null;
+        Date endTime = null;
+        if (dto.getBeginTime() == null && dto.getEndTime() == null) {
+            String now = format.format(new Date());
+            String beginDate = now + " 00:00:00";
+            String endDate = now + " 23:59:59";
+            try {
+                beginTime = dateFormat.parse(beginDate);
+                endTime = dateFormat.parse(endDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String beginDate = format.format(dto.getBeginTime()) + " 00:00:00";
+            String endDate = format.format(dto.getEndTime()) + " 23:59:59";
+            try {
+                beginTime = dateFormat.parse(beginDate);
+                endTime = dateFormat.parse(endDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        dto.setBeginTime(beginTime);
+        dto.setEndTime(endTime);
     }
 }

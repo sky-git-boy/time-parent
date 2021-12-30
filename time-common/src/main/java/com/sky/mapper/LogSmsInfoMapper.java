@@ -34,7 +34,10 @@ public interface LogSmsInfoMapper extends BaseMapper<LogSmsInfo> {
     int getOperCount();
 
     // 获取订单状态统计
-    List<DataDTO> getOrderStatCount(BaseDTO dto, @Param("flag") String flag);
+    List<DataDTO> getOrderStatusCount(BaseDTO dto);
+
+    // 获取订单类型统计
+    List<DataDTO> getOrderTypeCount(BaseDTO dto);
 
     // 总收入
     int getOrderCount(BaseDTO dto);

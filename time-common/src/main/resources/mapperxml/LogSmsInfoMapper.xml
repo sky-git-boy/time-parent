@@ -91,22 +91,39 @@
         FROM
             log_oper_info
     </select>
-    <select id="getOrderStatCount" resultType="com.sky.dto.DataDTO">
+    <select id="getOrderStatusCount" resultType="com.sky.dto.DataDTO">
         SELECT
-            #{flag} days,
+            order_status days,
             count( 1 ) count
         FROM
             time_order
         <where>
-            <if test="param1.beginTime != null">
-                create_time >= #{param1.beginTime}
+            <if test="beginTime != null">
+                create_time >= #{beginTime}
             </if>
-            <if test="param1.endTime != null">
-                and create_time &lt;= #{param1.endTime}
+            <if test="endTime != null">
+                and create_time &lt;= #{endTime}
             </if>
         </where>
         GROUP BY
-            #{flag}
+            order_status
+    </select>
+    <select id="getOrderTypeCount" resultType="com.sky.dto.DataDTO">
+        SELECT
+            order_item days,
+            count( 1 ) count
+        FROM
+            time_order
+        <where>
+            <if test="beginTime != null">
+                create_time >= #{beginTime}
+            </if>
+            <if test="endTime != null">
+                and create_time &lt;= #{endTime}
+            </if>
+        </where>
+        GROUP BY
+            order_item
     </select>
     <select id="getOrderCount" resultType="int">
         SELECT
