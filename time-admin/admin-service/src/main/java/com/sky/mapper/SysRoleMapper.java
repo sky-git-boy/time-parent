@@ -28,7 +28,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     List<Long> getRoleIdsByUserId(Long userId);
 
     // 保存角色和用户之间的关系
-    int saveRoleUser(@Param("userId") Long userId, @Param("roleId") Long roleId, @Param("createBy") Long createBy, @Param("createTime") Date createTime);
+    int saveRoleUser(@Param("userId") Long userId, @Param("roleId") Long roleId, @Param("createBy") Long createBy, @Param("createTime") Date createTime, @Param("expireTime") Date expireTime);
 
     // 根据菜单id删除sys_role_menu里面的数据
     int deleteRoleMenuByMenuIds(@Param("ids") List<Long> ids);
@@ -38,4 +38,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
 
     // 删除用户拥有的角色
     int deleteUserRoleByUserId(Long userId);
+
+    // 获取用户角色的过期时间
+    Date getUserRoleExpireTime(Long userId);
 }

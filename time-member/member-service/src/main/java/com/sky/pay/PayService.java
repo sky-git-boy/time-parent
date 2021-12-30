@@ -101,15 +101,4 @@ public class PayService {
         map.put("code", code);
         return map;
     }
-
-    public static void main(String[] args) {
-        String outTradeNo = "123481723481";
-        String subject = "SKY-个人时间管理支付平台";
-        String totalAmount = "30";
-        String undiscountableAmount = null;
-        String body = "升级超级会员";
-        String notifyUrl = "http://4714v77d38.qicp.vip/" + outTradeNo;
-        Map<String, Object> pay = PayService.pay(outTradeNo, subject, totalAmount, null, body, notifyUrl);
-        System.out.println(pay);
-    }
 }

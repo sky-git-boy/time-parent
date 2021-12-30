@@ -23,5 +23,5 @@ public interface UserServiceFeign {
     int register(@RequestBody RemoteUserDTO dto);
 
     @PostMapping("/plusUser")
-    int plusUser(@RequestParam Long userId);
+    int plusUser(@RequestParam Long userId, @RequestParam String orderType);
 }

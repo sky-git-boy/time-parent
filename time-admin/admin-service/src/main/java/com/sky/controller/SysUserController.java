@@ -158,8 +158,8 @@ public class SysUserController implements UserServiceFeign {
     }
 
     @Override
-    public int plusUser(Long userId) {
+    public int plusUser(Long userId, String orderType) {
         // 升级会员为超级会员
-        return this.userService.plusUser(userId);
+        return this.userService.plusUser(userId, orderType);
     }
 }

@@ -63,7 +63,7 @@
         select role_id from sys_user_role where user_id = #{userId}
     </select>
     <insert id="saveRoleUser">
-        insert into sys_user_role(user_id, role_id, create_by, create_time) values (#{userId}, #{roleId}, #{createBy}, #{createTime})
+        insert into sys_user_role(user_id, role_id, create_by, create_time, expire_time) values (#{userId}, #{roleId}, #{createBy}, #{createTime}, #{expireTime})
     </insert>
     <delete id="deleteRoleMenuByMenuIds">
         delete from sys_role_menu
@@ -82,4 +82,7 @@
             user_id = #{userId}
         </where>
     </delete>
+    <select id="getUserRoleExpireTime" resultType="java.util.Date">
+        select expire_time from sys_user_role where user_id = #{userId}
+    </select>
 </mapper>

@@ -117,7 +117,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             this.roleMapper.deleteRoleUserByUserIds(Collections.singletonList(userId));
             Date date = new Date();
             for (Long roleId : roleIds) {
-                this.roleMapper.saveRoleUser(userId, roleId, createBy, date);
+                this.roleMapper.saveRoleUser(userId, roleId, createBy, date, null);
             }
         } catch (Exception e) {
             return 0;

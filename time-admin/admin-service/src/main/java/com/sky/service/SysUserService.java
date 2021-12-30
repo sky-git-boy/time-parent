@@ -64,5 +64,5 @@ public interface SysUserService extends IService<SysUser> {
     /**
      * 会员升级
      */
-    int plusUser(Long userId);
+    int plusUser(Long userId, String orderType);
 }

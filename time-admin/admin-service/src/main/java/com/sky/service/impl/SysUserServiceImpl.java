@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -148,7 +149,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             // 添加用户
             this.userMapper.insert(user);
             // 设置用户权限
-            return this.roleMapper.saveRoleUser(user.getUserId(), Constants.ROLE_USER_ID, null, new Date());
+            return this.roleMapper.saveRoleUser(user.getUserId(), Constants.ROLE_USER_ID, null, new Date(), null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -158,11 +159,36 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     @Transactional
-    public int plusUser(Long userId) {
+    public int plusUser(Long userId, String orderType) {
+        // 获取用户角色的过期时间
+        Date roleExpireTime = this.roleMapper.getUserRoleExpireTime(userId);
+        Date now = null; // 当前时间
+        if (roleExpireTime == null)
+            now = new Date();
+        else
+            now = roleExpireTime;
+
         // 先删除用户拥有的角色
         this.roleMapper.deleteUserRoleByUserId(userId);
 
+        Calendar expireTime = Calendar.getInstance();
+        expireTime.setTime(now); // 设置起时间
+        switch (orderType) {
+            case Constants.ORDER_TYPE_0: // 一个月
+                expireTime.add(Calendar.MONTH, 1);
+                break;
+            case Constants.ORDER_TYPE_1: // 半年
+                expireTime.add(Calendar.MONTH, 6);
+                break;
+            case Constants.ORDER_TYPE_2: // 一年
+                expireTime.add(Calendar.YEAR, 1);
+                break;
+            case Constants.ORDER_TYPE_3: // 永久
+                expireTime.add(Calendar.YEAR, 99);
+                break;
+        }
+
         // 升级用户
-        return this.roleMapper.saveRoleUser(userId, Constants.ROLE_SUPER_USER_ID, null, new Date());
+        return this.roleMapper.saveRoleUser(userId, Constants.ROLE_SUPER_USER_ID, null, new Date(), expireTime.getTime());
     }
 }

@@ -53,7 +53,7 @@ public class TimeOrderServiceImpl implements TimeOrderService {
         int i = this.orderMapper.updateById(order);
         if (i > 0) {
             try {
-                userServiceFeign.plusUser(order.getUserId());
+                userServiceFeign.plusUser(order.getUserId(), order.getOrderItem());
             } catch (Exception e) {
                 e.printStackTrace();
             }
