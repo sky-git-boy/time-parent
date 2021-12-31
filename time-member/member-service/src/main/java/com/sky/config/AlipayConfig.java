@@ -20,5 +20,5 @@ public class AlipayConfig {
     public static String charset = "utf-8";
 
     //回调地址
-    public static String notifyUrl="http://4714v77d38.qicp.vip/member/pay/callback";
+    public static String notifyUrl="http://139.198.122.18/member/pay/callback";
 }
