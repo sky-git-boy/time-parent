@@ -125,7 +125,7 @@
         GROUP BY
             order_item
     </select>
-    <select id="getOrderCount" resultType="int">
+    <select id="getOrderCount" resultType="java.lang.Integer">
         SELECT
             SUM( order_amount ) count
         FROM

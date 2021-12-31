@@ -172,8 +172,8 @@ public class AdminStatServiceImpl implements AdminStatService {
     public int orderCount(BaseDTO dto) {
         // 时间格式化
         formatDate(dto);
-
-        return this.logSmsInfoMapper.getOrderCount(dto);
+        Integer count = this.logSmsInfoMapper.getOrderCount(dto);
+        return count == null ? 0 : count;
     }
 
     private void formatDate(BaseDTO dto) {

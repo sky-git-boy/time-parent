@@ -40,5 +40,5 @@ public interface LogSmsInfoMapper extends BaseMapper<LogSmsInfo> {
     List<DataDTO> getOrderTypeCount(BaseDTO dto);
 
     // 总收入
-    int getOrderCount(BaseDTO dto);
+    Integer getOrderCount(BaseDTO dto);
 }
