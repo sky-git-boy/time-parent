@@ -9,11 +9,12 @@
     <result column="need_count" jdbcType="VARCHAR" property="needCount" />
     <result column="reward_content" jdbcType="VARCHAR" property="rewardContent" />
     <result column="punishment_content" jdbcType="VARCHAR" property="punishmentContent" />
+    <result column="dead_line" jdbcType="TIMESTAMP" property="deadLine" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="status" jdbcType="CHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_id, need_count, reward_content, punishment_content, create_time, `status`
+    id, user_id, need_count, reward_content, punishment_content, dead_line, create_time,`status`
   </sql>
 </mapper>

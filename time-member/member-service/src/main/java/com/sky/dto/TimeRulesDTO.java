@@ -1,6 +1,7 @@
 package com.sky.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
  * 用户奖惩配置表
@@ -57,5 +60,12 @@ public class TimeRulesDTO extends BaseDTO {
      */
     @ApiModelProperty(value = "状态（0启用 1禁用）")
     private String status;
+
+    /**
+     * 截至时间
+     */
+    @ApiModelProperty(value = "截至时间")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
+    private Date deadLine;
 
 }

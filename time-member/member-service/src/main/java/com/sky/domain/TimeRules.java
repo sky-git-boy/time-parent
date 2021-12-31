@@ -69,6 +69,13 @@ public class TimeRules extends BaseEntity {
     private Date createTime;
 
     /**
+     * 截至时间
+     */
+    @TableField(value = "dead_line")
+    @ApiModelProperty(value = "截至时间")
+    private Date deadLine;
+
+    /**
      * 状态（0启用 1禁用）
      */
     @TableField(value = "status")
@@ -84,6 +91,8 @@ public class TimeRules extends BaseEntity {
     public static final String COL_REWARD_CONTENT = "reward_content";
 
     public static final String COL_PUNISHMENT_CONTENT = "punishment_content";
+
+    public static final String COL_DEAD_LINE = "dead_line";
 
     public static final String COL_CREATE_TIME = "create_time";
 
