@@ -86,6 +86,8 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getURI().getPath();
         if (noRequireTokenUris.contains(path)) {
             return false; // 不需要token
+        } else if (path.contains("/imserver/")) {
+            return false;
         }
         return Boolean.TRUE;
     }

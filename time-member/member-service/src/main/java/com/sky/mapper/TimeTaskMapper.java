@@ -13,4 +13,7 @@ import java.util.List;
 public interface TimeTaskMapper extends BaseMapper<TimeTask> {
     // 一年完成数
     List<YearDoneCountDTO> doneCunt(Long userId);
+
+    // 获取用户今日完成数
+    int getUserTodayDoneCount(Long userId);
 }
