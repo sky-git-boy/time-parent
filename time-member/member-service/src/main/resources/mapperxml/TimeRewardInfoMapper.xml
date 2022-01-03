@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.TimeRewardInfoMapper">
+    <resultMap id="BaseResultMap" type="com.sky.domain.TimeRewardInfo">
+        <!--@mbg.generated-->
+        <!--@Table time_reward_info-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="type" jdbcType="CHAR" property="type"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, content, `type`, user_id, creat_time
+    </sql>
+</mapper>

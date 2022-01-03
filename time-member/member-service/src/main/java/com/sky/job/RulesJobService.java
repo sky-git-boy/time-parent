@@ -2,11 +2,14 @@ package com.sky.job;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sky.constants.Constants;
+import com.sky.domain.TimeRewardInfo;
 import com.sky.domain.TimeRules;
 import com.sky.dto.MessageDTO;
+import com.sky.mapper.TimeRewardInfoMapper;
 import com.sky.mapper.TimeRulesMapper;
 import com.sky.mapper.TimeTaskMapper;
 import com.sky.server.WebSocketServer;
+import com.sky.utils.IdGeneratorSnowflake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,9 @@ public class RulesJobService {
     @Autowired
     private TimeTaskMapper taskMapper;
 
+    @Autowired
+    private TimeRewardInfoMapper rewardInfoMapper;
+
     // 每三秒扫描用户规则
     @Scheduled(cron = "0/3 * * * * ?")
     public void rulesJob() {
@@ -46,6 +52,8 @@ public class RulesJobService {
                     // 发送消息
                     WebSocketServer.sendInfo(new MessageDTO(rule.getPunishmentContent(), Constants.NOT_UNIQUE), String.valueOf(rule.getUserId()));
                     updateList.add(rule);
+                    // 添加记录
+                    this.insertUserReward(rule.getUserId(), rule.getPunishmentContent(), Constants.NOT_UNIQUE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -61,6 +69,8 @@ public class RulesJobService {
                         // 发送消息
                         WebSocketServer.sendInfo(new MessageDTO(rule.getRewardContent(), Constants.UNIQUE), String.valueOf(rule.getUserId()));
                         updateList.add(rule);
+                        // 添加记录
+                        this.insertUserReward(rule.getUserId(), rule.getRewardContent(), Constants.UNIQUE);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -75,5 +85,16 @@ public class RulesJobService {
         });
     }
 
+    private int insertUserReward(Long userId, String content, String type) {
 
+        TimeRewardInfo rewardInfo = new TimeRewardInfo();
+
+        rewardInfo.setId(IdGeneratorSnowflake.snowflakeId());
+        rewardInfo.setUserId(userId);
+        rewardInfo.setContent(content);
+        rewardInfo.setType(type);
+        rewardInfo.setCreatTime(new Date());
+
+        return this.rewardInfoMapper.insert(rewardInfo);
+    }
 }
