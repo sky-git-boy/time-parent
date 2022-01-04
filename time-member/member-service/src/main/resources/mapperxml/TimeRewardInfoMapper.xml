@@ -8,10 +8,10 @@
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="type" jdbcType="CHAR" property="type"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
-        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, content, `type`, user_id, creat_time
+        id, content, `type`, user_id, create_time
     </sql>
 </mapper>

@@ -57,9 +57,9 @@ public class TimeRewardInfo extends BaseEntity {
     /**
      * 奖惩时间
      */
-    @TableField(value = "creat_time")
+    @TableField(value = "create_time")
     @ApiModelProperty(value = "奖惩时间")
-    private Date creatTime;
+    private Date createTime;
 
     public static final String COL_ID = "id";
 
@@ -69,5 +69,5 @@ public class TimeRewardInfo extends BaseEntity {
 
     public static final String COL_USER_ID = "user_id";
 
-    public static final String COL_CREAT_TIME = "creat_time";
+    public static final String COL_CREAT_TIME = "create_time";
 }

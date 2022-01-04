@@ -93,7 +93,7 @@ public class RulesJobService {
         rewardInfo.setUserId(userId);
         rewardInfo.setContent(content);
         rewardInfo.setType(type);
-        rewardInfo.setCreatTime(new Date());
+        rewardInfo.setCreateTime(new Date());
 
         return this.rewardInfoMapper.insert(rewardInfo);
     }

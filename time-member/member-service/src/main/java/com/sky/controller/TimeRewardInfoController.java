@@ -41,8 +41,9 @@ public class TimeRewardInfoController {
         List<TimeRewardInfo> res = this.rewardInfoService.list(
                 new LambdaQueryWrapper<TimeRewardInfo>()
                         .eq(TimeRewardInfo::getUserId, dto.getUserId())
-                        .le(TimeRewardInfo::getCreatTime, dto.getBeginTime())
-                        .ge(TimeRewardInfo::getCreatTime, dto.getEndTime())
+                        .eq(TimeRewardInfo::getType, dto.getType())
+                        .le(TimeRewardInfo::getCreateTime, dto.getBeginTime())
+                        .ge(TimeRewardInfo::getCreateTime, dto.getEndTime())
         );
         return R.success(res);
     }
