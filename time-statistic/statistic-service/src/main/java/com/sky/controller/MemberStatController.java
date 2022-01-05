@@ -46,4 +46,11 @@ public class MemberStatController {
     public R pieChart() {
         return R.success(memberStatService.pieChart());
     }
+
+    @GetMapping("/rewardChart")
+    @ApiOperation("近七日奖惩数")
+    public R rewardChart() {
+        return R.success(memberStatService.rewardChart());
+    }
+
 }

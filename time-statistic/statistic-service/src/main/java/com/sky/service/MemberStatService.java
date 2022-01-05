@@ -1,9 +1,6 @@
 package com.sky.service;
 
-import com.sky.dto.ColumnChartDTO;
-import com.sky.dto.LineChartSimpleDTO;
-import com.sky.dto.MixedChartDTO;
-import com.sky.dto.PieChartDTO;
+import com.sky.dto.*;
 
 /**
  * @author sky
@@ -18,4 +15,6 @@ public interface MemberStatService {
     ColumnChartDTO columnChart();
 
     MixedChartDTO mixChart();
+
+    RewardChartDTO rewardChart();
 }

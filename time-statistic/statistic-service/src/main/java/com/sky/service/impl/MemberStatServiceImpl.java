@@ -113,4 +113,33 @@ public class MemberStatServiceImpl implements MemberStatService {
         });
         return dto;
     }
+
+    @Override
+    public RewardChartDTO rewardChart() {
+        SimpleUser user = SecurityUtils.getUser();
+        if (null == user.getUserId()) {
+            throw new BusinessException("获取用户信息失败");
+        }
+        RewardChartDTO dto = new RewardChartDTO();
+        int[] rewards = dto.getRewards();
+        int[] punishes = dto.getPunishes();
+        String[] days = dto.getDays();
+        this.mapper.getRewardCount(user.getUserId()).forEach(s -> {
+            for (int i=0; i<days.length; i++) {
+                if (days[i].equals(s.getDays())) {
+                    rewards[i] = s.getCount();
+                    break;
+                }
+            }
+        });
+        this.mapper.getPunishCount(user.getUserId()).forEach(s -> {
+            for (int i=0; i<days.length; i++) {
+                if (days[i].equals(s.getDays())) {
+                    punishes[i] = s.getCount();
+                    break;
+                }
+            }
+        });
+        return dto;
+    }
 }

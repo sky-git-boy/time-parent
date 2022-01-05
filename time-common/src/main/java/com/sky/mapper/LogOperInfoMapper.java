@@ -34,4 +34,10 @@ public interface LogOperInfoMapper extends BaseMapper<LogOperInfo> {
 
     // 获取今年每月的事件数
     List<DataDTO> getEventCountEachMonth(Long userId);
+
+    // 近七日奖励次数
+    List<DataDTO> getRewardCount(Long userId);
+
+    // 近七日惩罚次数
+    List<DataDTO> getPunishCount(Long userId);
 }

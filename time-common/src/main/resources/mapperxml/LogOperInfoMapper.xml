@@ -158,4 +158,40 @@
     GROUP BY
         days;
     </select>
+    <select id="getRewardCount" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( create_time, '%m-%d' ) days,
+        count(*) count
+    FROM
+        (
+        SELECT
+            *
+        FROM
+            time_reward_info
+        WHERE
+            DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( create_time )
+            AND user_id = #{userId}
+            AND type = '0'
+        ) AS task
+    GROUP BY
+        days;
+    </select>
+    <select id="getPunishCount" resultType="com.sky.dto.DataDTO">
+    SELECT
+        DATE_FORMAT( create_time, '%m-%d' ) days,
+        count(*) count
+    FROM
+        (
+        SELECT
+            *
+        FROM
+            time_reward_info
+        WHERE
+            DATE_SUB( CURDATE( ), INTERVAL 6 DAY ) &lt;= date( create_time )
+            AND user_id = #{userId}
+            AND type = '1'
+        ) AS task
+    GROUP BY
+        days;
+    </select>
 </mapper>

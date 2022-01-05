@@ -25,11 +25,10 @@ import java.util.List;
 @RestController
 @Api("用户奖惩记录控制器")
 @RequestMapping("reward")
-public class TimeRewardInfoController {
+public class RewardInfoController {
 
     @Autowired
     private TimeRewardInfoService rewardInfoService;
-
 
     @GetMapping("/list")
     @ApiModelProperty("获取用户奖惩记录")
