@@ -151,7 +151,7 @@ public interface Constants {
     /**
      * 用户默认头像
      */
-    String DEFAULT_PICTURE = "https://garbage-sorting.oss-cn-shenzhen.aliyuncs.com/2021/09/23/c8eaabf188a648a69fc73c9c09c905a4!400x400.jpg";
+    String DEFAULT_PICTURE = "https://personal-time.oss-cn-shenzhen.aliyuncs.com/pic/Saved%20Pictures/20220416233036.jpg";
 
     /**
      * 普通会员角色ID
