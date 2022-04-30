@@ -135,6 +135,10 @@ public class AdminStatServiceImpl implements AdminStatService {
             }
             res.add(statDTO);
         });
+        if (res.isEmpty()) {
+            res.add(new OrderStatDTO("未支付", 0));
+            res.add(new OrderStatDTO("已支付", 0));
+        }
         return res;
     }
 
@@ -165,6 +169,12 @@ public class AdminStatServiceImpl implements AdminStatService {
             }
             res.add(statDTO);
         });
+        if (res.isEmpty()) {
+            res.add(new OrderStatDTO("一个月", 0));
+            res.add(new OrderStatDTO("半年", 0));
+            res.add(new OrderStatDTO("一年", 0));
+            res.add(new OrderStatDTO("永久", 0));
+        }
         return res;
     }
 
