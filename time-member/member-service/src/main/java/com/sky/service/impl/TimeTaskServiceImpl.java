@@ -37,6 +37,7 @@ public class TimeTaskServiceImpl implements TimeTaskService {
                 .like(StringUtils.isNotEmpty(dto.getTags()), TimeTask::getTags, dto.getTags())
                 .ge(null != dto.getBeginTime(), TimeTask::getEndTime, dto.getBeginTime())
                 .le(null != dto.getQEndTime(), TimeTask::getEndTime, dto.getQEndTime())
+                .orderByDesc(TimeTask::getEndTime)
         );
     }
 

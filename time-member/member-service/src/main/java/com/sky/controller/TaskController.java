@@ -17,6 +17,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +48,19 @@ public class TaskController {
         KanBanDTO res = new KanBanDTO();
         for (int i=0; i<=3; i++) {
             dto.setStatus(i+"");
+            if (i == 2) { // 已完成列表只显示一天内的数据
+                Date dNow = new Date();   //当前时间
+                Date dBefore;
+
+                Calendar calendar = Calendar.getInstance(); //得到日历
+                calendar.setTime(dNow);//把当前时间赋给日历
+                calendar.add(Calendar.DAY_OF_MONTH, -1);  //设置为前一天
+                dBefore = calendar.getTime();   //得到前一天的时间
+
+                dto.setBeginTime(dBefore);
+                dto.setEndTime(dNow);
+            }
+
             List<TimeTask> list = this.service.getTaskList(dto);
             if (i==0)
                 res.setTodo(list);
