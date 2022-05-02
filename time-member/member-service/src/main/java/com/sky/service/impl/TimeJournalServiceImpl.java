@@ -51,6 +51,7 @@ public class TimeJournalServiceImpl implements TimeJournalService {
                 .or()
                 .like(StringUtils.isNotEmpty(dto.getTitle()), TimeJournal.COL_DESCRIPTION, dto.getTitle());
         qw.eq(TimeJournal.COL_USER_ID, dto.getSimpleUser().getUserId());
+        qw.orderByDesc(TimeJournal.COL_CREATE_TIME);
         this.mapper.selectPage(page, qw);
         return new DataGridView(page.getTotal(), page.getRecords());
     }

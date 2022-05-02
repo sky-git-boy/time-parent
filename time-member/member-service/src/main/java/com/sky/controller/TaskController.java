@@ -66,9 +66,11 @@ public class TaskController {
                 res.setTodo(list);
             else if (i==1)
                 res.setDoing(list);
-            else if (i==2)
+            else if (i==2) {
                 res.setDone(list);
-            else
+                dto.setBeginTime(null); // 去掉时间选项 不然过期事项默认也会查询当天
+                dto.setEndTime(null);
+            } else
                 res.setExpire(list);
         }
 
