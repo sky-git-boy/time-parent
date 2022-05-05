@@ -42,6 +42,19 @@ public class TimeTaskServiceImpl implements TimeTaskService {
     }
 
     @Override
+    public List<TimeTask> getTodayDoneTaskList(TimeTaskDTO dto) {
+        return this.mapper.selectList(new LambdaQueryWrapper<TimeTask>()
+                .eq(TimeTask::getUserId, dto.getSimpleUser().getUserId())
+                .eq(StringUtils.isNotEmpty(dto.getStatus()), TimeTask::getStatus, dto.getStatus())
+                .like(StringUtils.isNotEmpty(dto.getTitle()), TimeTask::getTitle, dto.getTitle())
+                .like(StringUtils.isNotEmpty(dto.getTags()), TimeTask::getTags, dto.getTags())
+                .ge(null != dto.getBeginTime(), TimeTask::getDoneTime, dto.getBeginTime())
+                .le(null != dto.getQEndTime(), TimeTask::getDoneTime, dto.getQEndTime())
+                .orderByDesc(TimeTask::getDoneTime)
+        );
+    }
+
+    @Override
     public int updateTask(TimeTaskDTO dto) {
         TimeTask task = new TimeTask();
         BeanUtils.copyProperties(dto, task);

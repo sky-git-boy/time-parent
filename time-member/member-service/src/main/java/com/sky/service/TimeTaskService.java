@@ -15,6 +15,9 @@ public interface TimeTaskService {
     // 获取任务列表
     List<TimeTask> getTaskList(TimeTaskDTO dto);
 
+    // 获取今日已完成任务列表
+    List<TimeTask> getTodayDoneTaskList(TimeTaskDTO dto);
+
     // 修改任务
     int updateTask(TimeTaskDTO dto);
 

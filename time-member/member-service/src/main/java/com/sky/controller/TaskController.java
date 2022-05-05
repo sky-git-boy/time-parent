@@ -48,7 +48,7 @@ public class TaskController {
         KanBanDTO res = new KanBanDTO();
         for (int i=0; i<=3; i++) {
             dto.setStatus(i+"");
-            if (i == 2) { // 已完成列表只显示一天内的数据
+            if (i == 2) { // 已完成列表只显示今天完成的数据
                 Date dNow = new Date();   //当前时间
                 Date dBefore;
 
@@ -59,6 +59,11 @@ public class TaskController {
 
                 dto.setBeginTime(dBefore);
                 dto.setEndTime(dNow);
+                List<TimeTask> list = this.service.getTodayDoneTaskList(dto);
+                res.setDone(list);
+                dto.setBeginTime(null); // 去掉时间选项 不然过期事项默认也会查询当天
+                dto.setEndTime(null);
+                continue;
             }
 
             List<TimeTask> list = this.service.getTaskList(dto);
@@ -66,11 +71,7 @@ public class TaskController {
                 res.setTodo(list);
             else if (i==1)
                 res.setDoing(list);
-            else if (i==2) {
-                res.setDone(list);
-                dto.setBeginTime(null); // 去掉时间选项 不然过期事项默认也会查询当天
-                dto.setEndTime(null);
-            } else
+            else
                 res.setExpire(list);
         }
 
