@@ -43,7 +43,7 @@ public class TimeGoldServiceImpl implements TimeGoldService {
         BeanUtils.copyProperties(dto, bean);
         bean.setCreateTime(new Date());
         bean.setUserId(dto.getSimpleUser().getUserId());
-        return this.mapper.updateById(bean);
+        return this.mapper.insert(bean);
     }
 
 
