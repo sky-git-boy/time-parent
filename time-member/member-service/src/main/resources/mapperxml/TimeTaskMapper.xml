@@ -38,6 +38,7 @@
         time_task
     WHERE
         user_id = #{userId}
-        AND to_days( done_time ) = to_days(now())
+<!--        AND to_days( done_time ) = to_days(now())-->
+        and done_time >= #{time}
   </select>
 </mapper>

@@ -3,7 +3,9 @@ package com.sky.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sky.domain.TimeTask;
 import com.sky.dto.YearDoneCountDTO;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,5 +17,5 @@ public interface TimeTaskMapper extends BaseMapper<TimeTask> {
     List<YearDoneCountDTO> doneCunt(Long userId);
 
     // 获取用户今日完成数
-    int getUserTodayDoneCount(Long userId);
+    int getUserTodayDoneCount(@Param("userId") Long userId, @Param("time") Date time);
 }

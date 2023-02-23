@@ -62,7 +62,7 @@ public class RulesJobService {
                 int needCount = Integer.parseInt(rule.getNeedCount());
 
                 // 获取用户今日完成数
-                int doneCount = taskMapper.getUserTodayDoneCount(rule.getUserId());
+                int doneCount = taskMapper.getUserTodayDoneCount(rule.getUserId(), rule.getCreateTime());
                 // 如果今日完成数大于等于应完成数
                 if (doneCount >= needCount) {
                     try {
