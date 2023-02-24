@@ -8,7 +8,34 @@
 
 
    #### 用户前台
-   
+    登录页：
+    ![输入图片说明](doc/1.png)
+    注册和忘记密码：
+    ![输入图片说明](doc/image074.png)
+    ![输入图片说明](doc/image076.png)
+    待办看板：
+    ![输入图片说明](doc/image078.png)
+    待办列表：
+    ![输入图片说明](doc/image082.png)
+    个人日志：
+    ![输入图片说明](doc/image086.png)
+    日历看板：
+    ![输入图片说明](doc/image088.png)
+    自我规划：
+    ![输入图片说明](doc/image090.png)
+    白噪音:
+    ![输入图片说明](doc/image094.png)
+    奖惩机制:
+    ![输入图片说明](doc/image098.png)
+    ![输入图片说明](doc/image100.png)
+    会员升级:
+    ![输入图片说明](doc/image104.png)
+    个人主页:
+    ![输入图片说明](doc/image108.png)
+    统计分析：
+    ![输入图片说明](doc/image110.png)
+    ![输入图片说明](doc/image112.png)
+    ![输入图片说明](doc/image114.png)
 
    #### 系统后台
 
@@ -50,6 +77,6 @@
       
 
    #### 技术栈
-
+    ![输入图片说明](doc/image003.png)
 
    PS：基于Apache License 2协议开源友好，使用、参考、转载请保留出处，严禁将项目直接打包出售。
